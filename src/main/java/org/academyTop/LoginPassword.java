@@ -1,7 +1,6 @@
 package org.academyTop;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,13 +10,18 @@ import java.util.Scanner;
 
 public class LoginPassword {
     Scanner scanner = new Scanner(System.in);
-    String separator = File.separator;
-    FileInputStream fileExel = new FileInputStream("." + separator + "src" + separator + "main" + separator + "resources" + separator + "company.xls");
-    Workbook workbook = new HSSFWorkbook(fileExel);
-
     HashMap<String, Integer> hashLoginPassword = new HashMap<>();
+    String login = null;
+    int password = 0;
 
-    public LoginPassword() throws IOException {
+
+    private HSSFWorkbook patchFileExel() throws IOException {
+        String separator = File.separator;
+        FileInputStream fileExel = new FileInputStream("." + separator + "src" + separator + "main" + separator + "resources" + separator + "company.xls");
+        return new HSSFWorkbook(fileExel);
+    }
+    public void getParchFileExel() throws  IOException{
+        patchFileExel();
     }
 
 
@@ -31,22 +35,22 @@ public class LoginPassword {
         return scanner.nextInt();
     }
 
-    public void putLoginPasswordHashMap() throws IOException {
+    private void putLoginPasswordInHashMap() throws IOException {
 
 
         int starRow = 1;
         int endRow = 10;
-        String login = null;
-        int password = 0;
         for (int i = starRow; i < endRow; i++) {
-            login = String.valueOf(workbook.getSheetAt(1).getRow(i).getCell(3));
-            password = (int) workbook.getSheetAt(1).getRow(i).getCell(4).getNumericCellValue();
+            login = String.valueOf(patchFileExel().getSheetAt(1).getRow(i).getCell(3));
+            password = (int) patchFileExel().getSheetAt(1).getRow(i).getCell(4).getNumericCellValue();
 
             hashLoginPassword.put(login, password);
         }
-
-
-        fileExel.close();
+        System.out.println(hashLoginPassword);
+        patchFileExel().close();
+    }
+    public  void getPutLoginPasswordInHashMap() throws IOException {
+        putLoginPasswordInHashMap();
     }
 
 
@@ -70,6 +74,7 @@ public class LoginPassword {
 //
 //    }
     private void checkLoginPassword() {
+        System.out.println(hashLoginPassword);
 
     }
 
