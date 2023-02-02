@@ -9,21 +9,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class LoginPassword {
+    DateBase dateBase =new DateBase();
     Scanner scanner = new Scanner(System.in);
     HashMap<String, Integer> hashLoginPassword = new HashMap<>();
     String login = null;
     int password = 0;
-
-
-    private HSSFWorkbook patchFileExel() throws IOException {
-        String separator = File.separator;
-        FileInputStream fileExel = new FileInputStream("." + separator + "src" + separator + "main" + separator + "resources" + separator + "company.xls");
-        return new HSSFWorkbook(fileExel);
-    }
-
-    public void getParchFileExel() throws IOException {
-        patchFileExel();
-    }
 
 
     private String readsLogin() {
@@ -42,13 +32,13 @@ public class LoginPassword {
         int starRow = 1;
         int endRow = 10;
         for (int i = starRow; i < endRow; i++) {
-            login = String.valueOf(patchFileExel().getSheetAt(1).getRow(i).getCell(3));
-            password = (int) patchFileExel().getSheetAt(1).getRow(i).getCell(4).getNumericCellValue();
+            login = String.valueOf(dateBase.getPatchFileExel().getSheetAt(1).getRow(i).getCell(3));
+            password = (int) dateBase.getPatchFileExel().getSheetAt(1).getRow(i).getCell(4).getNumericCellValue();
 
             hashLoginPassword.put(login, password);
         }
         System.out.println(hashLoginPassword);
-        patchFileExel().close();
+        dateBase.getPatchFileExel().close();
     }
 
     public void getPutLoginPasswordInHashMap() throws IOException {
