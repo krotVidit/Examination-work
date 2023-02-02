@@ -20,7 +20,8 @@ public class LoginPassword {
         FileInputStream fileExel = new FileInputStream("." + separator + "src" + separator + "main" + separator + "resources" + separator + "company.xls");
         return new HSSFWorkbook(fileExel);
     }
-    public void getParchFileExel() throws  IOException{
+
+    public void getParchFileExel() throws IOException {
         patchFileExel();
     }
 
@@ -49,39 +50,32 @@ public class LoginPassword {
         System.out.println(hashLoginPassword);
         patchFileExel().close();
     }
-    public  void getPutLoginPasswordInHashMap() throws IOException {
+
+    public void getPutLoginPasswordInHashMap() throws IOException {
         putLoginPasswordInHashMap();
     }
 
 
-
-    private void checkLoginPassword() throws IOException {
+    private void checkLoginPassword()  {
         String login = readsLogin();
-        int password = readsPassword();
         Integer keyHash = hashLoginPassword.get(login);
         if (keyHash == null) {
-            System.out.println("Not correct login");
+            System.out.println("Login not found, please try again\n");
             checkLoginPassword();
         } else {
-            System.out.println("Login correct");
+            System.out.println("Login correct\n");
+            int password = readsPassword();
             if (password == keyHash) {
-                System.out.println("Password correct");
+                System.out.println("Password correct\n");
             } else {
-                System.out.println("Password not correct");
+                System.out.println("Password not found, please try again\n");
                 checkLoginPassword();
             }
-
         }
-
-
     }
-
-
-    public void getCheckLoginPassword() throws IOException {
+    public void getCheckLoginPassword(){
         checkLoginPassword();
     }
-
-
 }
 
 
