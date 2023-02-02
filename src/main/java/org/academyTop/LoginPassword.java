@@ -67,10 +67,16 @@ public class LoginPassword {
             int password = readsPassword();
             if (password == keyHash) {
                 System.out.println("Password correct\n");
+                if (login.equals("Mimirov") || login.equals("Mironov") || login.equals("Yaric")) {
+                    new Menu().getPrintMenuAdmin();
+                } else {
+                    new Menu().getPrintMenuEmployee();
+                }
             } else {
                 System.out.println("Password is incorrect, please try again\n");
                 checkLoginPassword();
             }
+
         }
     }
     public void getCheckLoginPassword(){
