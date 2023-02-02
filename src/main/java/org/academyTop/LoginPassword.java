@@ -68,7 +68,7 @@ public class LoginPassword {
             if (password == keyHash) {
                 System.out.println("Password correct\n");
             } else {
-                System.out.println("Password not found, please try again\n");
+                System.out.println("Password is incorrect, please try again\n");
                 checkLoginPassword();
             }
         }
