@@ -73,12 +73,20 @@ public class LoginPassword {
 //        }
 //
 //    }
-    private void checkLoginPassword() {
-        System.out.println(hashLoginPassword);
+    private void checkLoginPassword() throws IOException {
+        putLoginPasswordInHashMap();
+        String login = readsLogin();
+        Integer passwordKey = hashLoginPassword.get(login);
+        if(passwordKey ==null){
+            System.out.println("Not correct login");
+        }
+        else {
+            System.out.println("login correct");
+        }
 
     }
 
-    public void getCheckLoginPassword() {
+    public void getCheckLoginPassword() throws IOException {
         checkLoginPassword();
     }
 
