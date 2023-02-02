@@ -54,37 +54,28 @@ public class LoginPassword {
     }
 
 
-    //    public boolean checkLoginPassword() {
-//        String login = readsLogin();
-//        Integer password = hashLoginPassword.get(login);
-//        if (password == null) {
-//            return false;
-//        } else {
-//            System.out.println("win");
-//            int printPassword = readsPassword();
-//            password = hashLoginPassword.get(printPassword);
-//            if (password == null) {
-//                checkLoginPassword();
-//                return false;
-//            } else {
-//                System.out.println("Win");
-//                return true;
-//            }
-//        }
-//
-//    }
+
     private void checkLoginPassword() throws IOException {
-        putLoginPasswordInHashMap();
         String login = readsLogin();
-        Integer passwordKey = hashLoginPassword.get(login);
-        if(passwordKey ==null){
+        int password = readsPassword();
+        Integer keyHash = hashLoginPassword.get(login);
+        if (keyHash == null) {
             System.out.println("Not correct login");
-        }
-        else {
-            System.out.println("login correct");
+            checkLoginPassword();
+        } else {
+            System.out.println("Login correct");
+            if (password == keyHash) {
+                System.out.println("Password correct");
+            } else {
+                System.out.println("Password not correct");
+                checkLoginPassword();
+            }
+
         }
 
+
     }
+
 
     public void getCheckLoginPassword() throws IOException {
         checkLoginPassword();
