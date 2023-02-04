@@ -26,25 +26,26 @@ public class DateBase {
 
 
     private ArrayList<String> putDataBaseExelInArrayList() throws IOException {
-        int startCell= 0;
+        int startCell = 0;
         int endCell = 13;
         int startRow = 0;
         int endRow = 10;
         String dataBaseExel = null;
 
-        for (int i =startCell;i<endCell;i++){
-            for(int x = startRow;x<endRow;x++){
+        for (int i = startCell; i < endCell; i++) {
+            for (int x = startRow; x < endRow; x++) {
                 dataBaseExel = ChecksCellForFormat(patchFileExel().getSheetAt(0).getRow(x).getCell(i));
                 dataBaseArrayList.add(dataBaseExel);
             }
         }
-        System.out.println(dataBaseArrayList);
+
         patchFileExel().close();
         return dataBaseArrayList;
     }
 
+
     public void getPutDataBaseExelInArrayList() throws IOException {
-         putDataBaseExelInArrayList();
+        putDataBaseExelInArrayList();
 
     }
 

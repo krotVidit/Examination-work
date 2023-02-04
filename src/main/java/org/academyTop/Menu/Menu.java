@@ -1,4 +1,4 @@
-package org.academyTop;
+package org.academyTop.Menu;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class Menu {
 
                 Select Action
                 _____________""");
-            System.out.println("1.search by employees\n2.Create a report\n3.News blog\n4.Hire a new employee");
+            System.out.println("1.search by employees\n2.Create a report\n3.DataBase\n4.Hire a new employee");
             selectMenu.getSelectMenuItemsAdmin();
 
         }

@@ -1,5 +1,7 @@
 package org.academyTop;
 
+import org.academyTop.Menu.Menu;
+
 import java.io.IOException;
 
 public class Main {

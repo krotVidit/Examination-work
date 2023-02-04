@@ -1,6 +1,9 @@
-package org.academyTop;
+package org.academyTop.Menu;
+
+import org.academyTop.DateBase;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class SelectMenu {
@@ -9,7 +12,7 @@ public class SelectMenu {
     private void selectsMenuItemsAdmin() throws IOException {
         int numberMenu = scanner.nextInt();
         switch (numberMenu){
-            case 1 :
+            case 3 :
                 dateBase.getPutDataBaseExelInArrayList();
                 break;
 
