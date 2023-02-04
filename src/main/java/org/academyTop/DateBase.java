@@ -8,8 +8,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class DateBase {
+    ArrayList<String> dataBaseArrayList = new ArrayList<>();
+
 
     private HSSFWorkbook patchFileExel() throws IOException {
         String separator = File.separator;
@@ -22,24 +25,27 @@ public class DateBase {
     }
 
 
-    private void readsAllDate() throws IOException {
+    private void putDataBaseExelInArrayList() throws IOException {
         int startCell= 0;
         int endCell = 13;
         int startRow = 0;
         int endRow = 10;
+        String dataBaseExel = null;
 
         for (int i =startCell;i<endCell;i++){
             for(int x = startRow;x<endRow;x++){
-                String dataBaseExel = ChecksCellForFormat(getPatchFileExel().getSheetAt(0).getRow(x).getCell(i));
-                System.out.println(dataBaseExel);
-
+                dataBaseExel = ChecksCellForFormat(getPatchFileExel().getSheetAt(0).getRow(x).getCell(i));
+                dataBaseArrayList.add(dataBaseExel);
+                System.out.println(dataBaseArrayList);
             }
+            getPatchFileExel().close();
         }
 
     }
 
-    public void getReadsAllDate() throws IOException {
-        readsAllDate();
+    public void getPutDataBaseExelInArrayList() throws IOException {
+         putDataBaseExelInArrayList();
+
     }
 
 

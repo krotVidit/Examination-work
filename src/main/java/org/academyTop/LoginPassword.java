@@ -46,7 +46,7 @@ public class LoginPassword {
     }
 
 
-    private void checkLoginPassword()  {
+    private void checkLoginPassword() throws IOException {
         String login = readsLogin();
         Integer keyHash = hashLoginPassword.get(login);
         if (keyHash == null) {
@@ -69,7 +69,7 @@ public class LoginPassword {
 
         }
     }
-    public void getCheckLoginPassword(){
+    public void getCheckLoginPassword() throws IOException {
         checkLoginPassword();
     }
 }
