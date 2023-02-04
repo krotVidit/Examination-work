@@ -3,7 +3,6 @@ package org.academyTop;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.Row;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,17 +22,24 @@ public class DateBase {
     }
 
 
-    private void All() throws IOException {
-        for (Row row : patchFileExel().getSheetAt(0)) {
-            for (Cell cell : row) {
+    private void readsAllDate() throws IOException {
+        int startCell= 0;
+        int endCell = 13;
+        int startRow = 0;
+        int endRow = 10;
 
-                System.out.println(ChecksCellForFormat(cell) + " ");
+        for (int i =startCell;i<endCell;i++){
+            for(int x = startRow;x<endRow;x++){
+                String dataBaseExel = ChecksCellForFormat(getPatchFileExel().getSheetAt(0).getRow(x).getCell(i));
+                System.out.println(dataBaseExel);
+
             }
         }
-        patchFileExel().close();
+
     }
-    public void getAll() throws IOException {
-        All();
+
+    public void getReadsAllDate() throws IOException {
+        readsAllDate();
     }
 
 
@@ -47,7 +53,7 @@ public class DateBase {
                 break;
             case NUMERIC:
                 if (DateUtil.isCellDateFormatted(cell)) {
-                    result = simpleDateFormat.format(cell.getDateCellValue()); // передали формат даты
+                    result = simpleDateFormat.format(cell.getDateCellValue());
                 } else {
                     result = String.valueOf(cell.getNumericCellValue());
                 }
