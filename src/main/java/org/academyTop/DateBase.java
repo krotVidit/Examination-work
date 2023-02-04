@@ -25,7 +25,7 @@ public class DateBase {
     }
 
 
-    private void putDataBaseExelInArrayList() throws IOException {
+    private ArrayList<String> putDataBaseExelInArrayList() throws IOException {
         int startCell= 0;
         int endCell = 13;
         int startRow = 0;
@@ -34,13 +34,13 @@ public class DateBase {
 
         for (int i =startCell;i<endCell;i++){
             for(int x = startRow;x<endRow;x++){
-                dataBaseExel = ChecksCellForFormat(getPatchFileExel().getSheetAt(0).getRow(x).getCell(i));
+                dataBaseExel = ChecksCellForFormat(patchFileExel().getSheetAt(0).getRow(x).getCell(i));
                 dataBaseArrayList.add(dataBaseExel);
-                System.out.println(dataBaseArrayList);
             }
-            getPatchFileExel().close();
         }
-
+        System.out.println(dataBaseArrayList);
+        patchFileExel().close();
+        return dataBaseArrayList;
     }
 
     public void getPutDataBaseExelInArrayList() throws IOException {
