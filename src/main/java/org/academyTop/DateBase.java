@@ -38,10 +38,11 @@ public class DateBase {
                 dataBaseArrayList.add(dataBaseExel);
             }
         }
-
+        System.out.print(dataBaseArrayList);
         patchFileExel().close();
         return dataBaseArrayList;
     }
+
 
 
     public void getPutDataBaseExelInArrayList() throws IOException {
@@ -69,7 +70,7 @@ public class DateBase {
                 result = String.valueOf(cell.getBooleanCellValue());
                 break;
             case FORMULA:
-                result = cell.getCellFormula();
+                result = String.valueOf(cell.getNumericCellValue());
                 break;
             default:
                 System.out.println();
@@ -77,6 +78,7 @@ public class DateBase {
         return result;
 
     }
+
 
 }
 
