@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class LoginPassword {
-    DateBase dateBase =new DateBase();
+    DataBase dataBase =new DataBase();
     Scanner scanner = new Scanner(System.in);
     HashMap<String, Integer> hashLoginPassword = new HashMap<>();
     String login = null;
@@ -30,13 +30,13 @@ public class LoginPassword {
         int starRow = 1;
         int endRow = 10;
         for (int i = starRow; i < endRow; i++) {
-            login = String.valueOf(dateBase.getPatchFileExel().getSheetAt(1).getRow(i).getCell(3));
-            password = (int) dateBase.getPatchFileExel().getSheetAt(1).getRow(i).getCell(4).getNumericCellValue();
+            login = String.valueOf(dataBase.getPatchFileExel().getSheetAt(1).getRow(i).getCell(3));
+            password = (int) dataBase.getPatchFileExel().getSheetAt(1).getRow(i).getCell(4).getNumericCellValue();
 
             hashLoginPassword.put(login, password);
         }
         System.out.println(hashLoginPassword);
-        dateBase.getPatchFileExel().close();
+        dataBase.getPatchFileExel().close();
     }
 
     public void getPutLoginPasswordInHashMap() throws IOException {

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class DateBase {
+public class DataBase {
     ArrayList<String> dataBaseArrayList = new ArrayList<>();
 
 

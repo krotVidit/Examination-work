@@ -1,12 +1,12 @@
 package org.academyTop.Menu;
 
-import org.academyTop.DateBase;
+import org.academyTop.DataBase;
 
 import java.util.Scanner;
 
 public class Search {
     Scanner scanner = new Scanner(System.in);
-    DateBase dateBase = new DateBase();
+    DataBase dataBase = new DataBase();
     private void search(){
 
 

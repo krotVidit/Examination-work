@@ -1,19 +1,18 @@
 package org.academyTop.Menu;
 
-import org.academyTop.DateBase;
+import org.academyTop.DataBase;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class SelectMenu {
     Scanner scanner = new Scanner(System.in);
-    DateBase dateBase = new DateBase();
+    DataBase dataBase = new DataBase();
     private void selectsMenuItemsAdmin() throws IOException {
         int numberMenu = scanner.nextInt();
         switch (numberMenu){
             case 3 :
-                dateBase.getPutDataBaseExelInArrayList();
+                dataBase.getPutDataBaseExelInArrayList();
                 break;
 
         }
