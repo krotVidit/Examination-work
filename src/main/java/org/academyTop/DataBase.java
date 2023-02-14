@@ -42,8 +42,6 @@ public class DataBase {
 
             dataBaseArrayList.add(rowData);
         }
-        System.out.println(dataBaseArrayList);
-
         patchFileExel().close();
         return dataBaseArrayList;
     }

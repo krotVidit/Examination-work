@@ -4,6 +4,10 @@ import java.io.IOException;
 
 public class Menu {
     SelectMenu selectMenu = new SelectMenu();
+
+    public Menu() throws IOException {
+    }
+
     private void printsNameProgram(){
             System.out.print("""
 
