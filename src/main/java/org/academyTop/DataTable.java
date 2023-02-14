@@ -12,7 +12,7 @@ public class DataTable extends JFrame {
     private DataBase dataBase;
 
     public DataTable() throws IOException {
-        super("Data from excel");
+        super("Data Base ");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

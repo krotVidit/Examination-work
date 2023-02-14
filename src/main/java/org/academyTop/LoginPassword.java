@@ -1,6 +1,6 @@
 package org.academyTop;
 
-import org.academyTop.Menu.Menu;
+import org.academyTop.Menu.MainMenu;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -56,9 +56,9 @@ public class LoginPassword {
             if (password == keyHash) {
                 System.out.println("Password correct\n");
                 if (login.equals("Mimirov") || login.equals("Mironov") || login.equals("Yaric")) {
-                    new Menu().getPrintMenuAdmin();
+                    new MainMenu().getPrintMenuAdmin();
                 } else {
-                    new Menu().getPrintMenuEmployee();
+                    new MainMenu().getPrintMenuEmployee();
                 }
             } else {
                 System.out.println("Password is incorrect, please try again\n");

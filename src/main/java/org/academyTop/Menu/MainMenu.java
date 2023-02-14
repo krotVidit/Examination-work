@@ -2,10 +2,10 @@ package org.academyTop.Menu;
 
 import java.io.IOException;
 
-public class Menu {
+public class MainMenu {
     SelectMenu selectMenu = new SelectMenu();
 
-    public Menu() throws IOException {
+    public MainMenu() throws IOException {
     }
 
     private void printsNameProgram(){
