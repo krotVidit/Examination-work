@@ -11,8 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class DataBase {
-    ArrayList<String> dataBaseArrayList = new ArrayList<>();
-
+    ArrayList<ArrayList<String>> dataBaseArrayList = new ArrayList<>();
 
     private HSSFWorkbook patchFileExel() throws IOException {
         String separator = File.separator;
@@ -24,32 +23,33 @@ public class DataBase {
         return patchFileExel();
     }
 
-
-    private ArrayList<String> putDataBaseExelInArrayList() throws IOException {
+    private ArrayList<ArrayList<String>> putDataBaseExelInArrayList() throws IOException {
         int startCell = 0;
         int endCell = 13;
         int startRow = 0;
         int endRow = 10;
-        String dataBaseExel = null;
 
-        for (int i = startCell; i < endCell; i++) {
-            for (int x = startRow; x < endRow; x++) {
-                dataBaseExel = ChecksCellForFormat(patchFileExel().getSheetAt(0).getRow(x).getCell(i));
-                dataBaseArrayList.add(dataBaseExel);
+
+
+        for (int i = startRow; i < endRow; i++) {
+            ArrayList<String> rowData = new ArrayList<>();
+
+            for (int j = startCell; j < endCell; j++) {
+                Cell cell = patchFileExel().getSheetAt(0).getRow(i).getCell(j);
+                String data = ChecksCellForFormat(cell);
+                rowData.add(data);
             }
+
+            dataBaseArrayList.add(rowData);
         }
-        System.out.print(dataBaseArrayList);
+        System.out.println(dataBaseArrayList);
+
         patchFileExel().close();
         return dataBaseArrayList;
     }
-
-
-
-    public void getPutDataBaseExelInArrayList() throws IOException {
-        putDataBaseExelInArrayList();
-
+    public ArrayList<ArrayList<String>> getPutDataBaseExelInArrayList() throws IOException {
+        return putDataBaseExelInArrayList();
     }
-
 
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -76,11 +76,7 @@ public class DataBase {
                 System.out.println();
         }
         return result;
-
     }
-
-
 }
-
 
 
