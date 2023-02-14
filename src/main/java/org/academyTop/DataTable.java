@@ -14,7 +14,12 @@ public class DataTable extends JFrame {
     public DataTable() throws IOException {
         super("Data from excel");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) screenSize.getWidth();
+        int height = (int) screenSize.getHeight();
+
+        setSize(width, height);
 
         dataBase = new DataBase();
         data = dataBase.getPutDataBaseExelInArrayList();
@@ -33,17 +38,5 @@ public class DataTable extends JFrame {
             ArrayList<String> row = data.get(i);
             model.addRow(row.toArray());
         }
-    }
-
-    public ArrayList<ArrayList<String>> getData() {
-        return data;
-    }
-
-    public JTable getTable() {
-        return table;
-    }
-
-    public DataBase getDataBase() {
-        return dataBase;
     }
 }
