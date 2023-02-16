@@ -4,7 +4,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -14,8 +13,8 @@ public class DataBase {
     ArrayList<ArrayList<String>> dataBaseArrayList = new ArrayList<>();
 
     private HSSFWorkbook patchFileExel() throws IOException {
-        String separator = File.separator;
-        FileInputStream fileExel = new FileInputStream("." + separator + "src" + separator + "main" + separator + "resources" + separator + "company.xls");
+
+        FileInputStream fileExel = new FileInputStream("company.xls");
         return new HSSFWorkbook(fileExel);
     }
 
