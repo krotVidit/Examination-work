@@ -16,6 +16,9 @@ public class OrganizationStructureReport {
     public OrganizationStructureReport(ArrayList<ArrayList<String>> data) {
         employees = new ArrayList<>();
 
+        // Пропускаем первую строку в файле
+        data.remove(0);
+
         for (ArrayList<String> row : data) {
             String departmentName = row.get(0);
             String position = row.get(1);
@@ -36,7 +39,8 @@ public class OrganizationStructureReport {
         }
     }
 
-    public void generateReport() {
+
+        public void generateReport() {
         Map<String, Department> departmentsMap = new HashMap<>();
 
         for (Employee employee : employees) {
@@ -56,7 +60,9 @@ public class OrganizationStructureReport {
         }
 
         for (Department department : departmentsMap.values()) {
-            System.out.println("   \t\t                   Отдел " + department.getName() + ":");
+            if (!department.getEmployees().isEmpty() || department.getManager() != null) {
+                System.out.println("\n\t\t                   Отдел " + department.getName() + ":");
+            }
             if (department.getManager() != null) {
                 System.out.println("  Начальник :  " + department.getManager().getFullName() + " (пол " + department.getManager().gender() + ", дата рождения " + department.getManager().birthDate() + ")");
             }
