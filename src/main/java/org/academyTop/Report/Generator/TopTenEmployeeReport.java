@@ -25,7 +25,7 @@ public class TopTenEmployeeReport {
             topTenEmployees.add(employees.get(i));
         }
 
-        // Формируем отчет и сохраняем в файл
+
         try (FileWriter writer = new FileWriter("top_ten_employee_report.txt")) {
             writer.write("ТОП самых преданных сотрудников по количеству лет работы в организации:\n");
             for (int i = 0; i < topTenEmployees.size(); i++) {
