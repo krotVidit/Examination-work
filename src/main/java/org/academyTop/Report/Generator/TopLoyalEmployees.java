@@ -2,6 +2,7 @@ package org.academyTop.Report.Generator;
 
 import org.academyTop.Report.Employee;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Comparator;
@@ -18,7 +19,8 @@ public class TopLoyalEmployees {
     public void createReportLoyalEmployees() {
         employees.sort(Comparator.comparing(Employee::getDurationOfWork).reversed());
 
-        try (FileWriter writer = new FileWriter("employee_report.txt")) {
+
+        try (FileWriter writer = new FileWriter("."+ File.separator+"Report"+File.separator+"Top_loyal_employees.txt")) {
             writer.write("Отчет по всем сотрудникам:\n");
             for (int i = 0; i < employees.size(); i++) {
                 Employee employee = employees.get(i);

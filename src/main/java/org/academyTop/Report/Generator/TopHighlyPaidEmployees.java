@@ -26,7 +26,7 @@ public class TopHighlyPaidEmployees {
         });
 
 
-        System.out.println("ТОП самых дорогих сотрудников:");
+        System.out.println("ТОП самых высокооплачиваемых сотрудников:");
         for (int i = 0; i < 10 && i < employees.size(); i++) {
             Employee employee = employees.get(i);
             System.out.printf("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());

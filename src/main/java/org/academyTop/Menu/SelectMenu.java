@@ -52,7 +52,7 @@ public class SelectMenu {
         int numberSelect = scanner.nextInt();
         switch (numberSelect){
             case 1:
-                roleAssigner.assignRoles();
+                roleAssigner.getAssignRoles();
                 ArrayList<ArrayList<String>> dataWithRoles = roleAssigner.getData();
                 OrganizationStructureReport report = new OrganizationStructureReport(dataWithRoles);
                 report.getGeneralReport();

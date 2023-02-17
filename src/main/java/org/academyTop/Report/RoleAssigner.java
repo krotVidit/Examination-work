@@ -13,7 +13,7 @@ public class RoleAssigner {
         this.data = database.getPutDataBaseExelInArrayList();
     }
 
-    public void assignRoles() {
+    private void assignRoles() {
         for (ArrayList<String> row : data) {
             String position = row.get(1);
 
@@ -23,6 +23,9 @@ public class RoleAssigner {
                 row.set(1, "Сотрудник");
             }
         }
+    }
+    public void getAssignRoles(){
+        assignRoles();
     }
 
     public ArrayList<ArrayList<String>> getData() {

@@ -74,7 +74,7 @@ public class AverageSalary {
             fileWriter.write("Средняя зарплата по отделу " + department + ": " + departmentAverageSalary + "\n");
         }
         fileWriter.close();
-        System.out.println("Отчёт успешно сохранён в файл " + fileName);
+        System.out.println("\tОтчёт успешно сохранён в файл " + fileName);
     }
 }
 
