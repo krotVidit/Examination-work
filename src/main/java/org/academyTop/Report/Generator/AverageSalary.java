@@ -66,7 +66,7 @@ public class AverageSalary {
     private void saveReportToFile() throws IOException {
         Map<String, Double> averageSalaryByDepartment = getAverageSalaryByDepartment();
         double averageSalary = getAverageSalary();
-        String file = "."+ File.separator+"Report"+File.separator+"AverageSalary";
+        String file = "."+ File.separator+"Report"+File.separator+"Average_salary.txt";
 
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write("Средняя зарплата по организации: " + averageSalary + "\n");
@@ -76,7 +76,7 @@ public class AverageSalary {
             fileWriter.write("Средняя зарплата по отделу " + department + ": " + departmentAverageSalary + "\n");
         }
         fileWriter.close();
-        System.out.println("\tОтчёт успешно сохранён в файл " + file);
+        System.out.println("\tОтчёт успешно сохранён в файл в Report");
     }
     public void getSaveReportToFile() throws IOException {
         saveReportToFile();

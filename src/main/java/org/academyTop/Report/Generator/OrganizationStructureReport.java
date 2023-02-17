@@ -59,9 +59,12 @@ public class OrganizationStructureReport {
             }
         }
     }
+
+
     public void getGeneralReport(){
         generateReport();
     }
+
 
     private static class Department {
         private final String name;
