@@ -60,7 +60,7 @@ public class SelectMenu {
             case 2:
                 reportGenerator.getGenerateReport();
 
-                reportGenerator.saveReportToFile("report.txt");
+                reportGenerator.getSaveReportToFile();
                 break;
             case 3:
                 TopHighlyPaidEmployees reportGenerator1 = new TopHighlyPaidEmployees(employees);

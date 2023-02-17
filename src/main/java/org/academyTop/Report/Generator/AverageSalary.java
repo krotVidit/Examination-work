@@ -2,6 +2,7 @@ package org.academyTop.Report.Generator;
 
 import org.academyTop.Report.Employee;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -62,11 +63,12 @@ public class AverageSalary {
         generateReport();
     }
 
-    public void saveReportToFile(String fileName) throws IOException {
+    private void saveReportToFile() throws IOException {
         Map<String, Double> averageSalaryByDepartment = getAverageSalaryByDepartment();
         double averageSalary = getAverageSalary();
+        String file = "."+ File.separator+"Report"+File.separator+"AverageSalary";
 
-        FileWriter fileWriter = new FileWriter(fileName);
+        FileWriter fileWriter = new FileWriter(file);
         fileWriter.write("Средняя зарплата по организации: " + averageSalary + "\n");
         for (Map.Entry<String, Double> entry : averageSalaryByDepartment.entrySet()) {
             String department = entry.getKey();
@@ -74,7 +76,10 @@ public class AverageSalary {
             fileWriter.write("Средняя зарплата по отделу " + department + ": " + departmentAverageSalary + "\n");
         }
         fileWriter.close();
-        System.out.println("\tОтчёт успешно сохранён в файл " + fileName);
+        System.out.println("\tОтчёт успешно сохранён в файл " + file);
+    }
+    public void getSaveReportToFile() throws IOException {
+        saveReportToFile();
     }
 }
 
