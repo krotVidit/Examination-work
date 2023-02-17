@@ -17,7 +17,6 @@ public class TopTenEmployeeReport {
     }
 
     public void generateReport() {
-        // Сортируем сотрудников по длительности работы в организации в порядке убывания
         employees.sort(Comparator.comparing(Employee::getDurationOfWork).reversed());
 
 
