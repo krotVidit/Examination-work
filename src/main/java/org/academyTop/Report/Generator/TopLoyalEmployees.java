@@ -30,5 +30,6 @@ public class TopLoyalEmployees {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("\tОтчёт успешно сохранён в файл в Report");
     }
 }
