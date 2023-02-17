@@ -1,4 +1,9 @@
 package org.academyTop.Report;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public class Employee {
     private String departmentName;
     private String position;
@@ -31,6 +36,15 @@ public class Employee {
     }
     public String getFullName() {
         return lastName + " " + firstName + " " + middleName;
+    }
+    public int getDurationOfWork() {
+        // Преобразование строки в дату
+        LocalDate startDate = LocalDate.parse(this.startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+
+        // Вычисление количества лет работы
+        LocalDate now = LocalDate.now();
+        Period period = Period.between(startDate, now);
+        return period.getYears();
     }
 
     public String getDepartmentName() {
