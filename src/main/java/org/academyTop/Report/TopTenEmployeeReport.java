@@ -17,17 +17,14 @@ public class TopTenEmployeeReport {
     }
 
     public void generateReport() {
-        // Сортируем сотрудников по длительности работы в организации
-        employees.sort(Comparator.comparing(Employee::getStartDate));
+        // Сортируем сотрудников по длительности работы в организации в порядке убывания
+        employees.sort(Comparator.comparing(Employee::getDurationOfWork).reversed());
 
         // Создаем список из ТОП-10 самых преданных сотрудников
         List<Employee> topTenEmployees = new ArrayList<>();
         for (int i = 0; i < Math.min(10, employees.size()); i++) {
             topTenEmployees.add(employees.get(i));
         }
-
-        // Сортируем список ТОП-10 сотрудников по убыванию длительности работы в организации
-        topTenEmployees.sort(Comparator.comparing(Employee::getStartDate).reversed());
 
         // Формируем отчет и сохраняем в файл
         try (FileWriter writer = new FileWriter("top_ten_employee_report.txt")) {
@@ -41,6 +38,7 @@ public class TopTenEmployeeReport {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         try {
             DataBase database = new DataBase();
@@ -48,10 +46,8 @@ public class TopTenEmployeeReport {
             EmployeeParser employeeParser = new EmployeeParser();
 
             List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
-            List<Employee> sortedEmployees = new ArrayList<>(employees);
-            sortedEmployees.sort((e1, e2) -> e2.getDurationOfWork() - e1.getDurationOfWork());
 
-            TopTenEmployeeReport reportGenerator = new TopTenEmployeeReport(sortedEmployees);
+            TopTenEmployeeReport reportGenerator = new TopTenEmployeeReport(employees);
             reportGenerator.generateReport();
         } catch (IOException e) {
             e.printStackTrace();
