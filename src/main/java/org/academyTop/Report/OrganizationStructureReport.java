@@ -1,6 +1,5 @@
 package org.academyTop.Report;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,42 +8,20 @@ import java.util.Map;
 public class OrganizationStructureReport {
     private final List<Employee> employees;
 
-    public OrganizationStructureReport(List<Employee> employees) {
+    private OrganizationStructureReport(List<Employee> employees) {
         this.employees = employees;
     }
 
     public OrganizationStructureReport(ArrayList<ArrayList<String>> data) {
-        employees = new ArrayList<>();
-
-        // Пропускаем первую строку в файле
-        data.remove(0);
-
-        for (ArrayList<String> row : data) {
-            String departmentName = row.get(0);
-            String position = row.get(1);
-            String lastName = row.get(2);
-            String firstName = row.get(3);
-            String middleName = row.get(4);
-            String gender = row.get(5);
-            String birthDate = row.get(6);
-            String employeeId = row.get(7);
-            String startDate = row.get(8);
-            String currency = row.get(9);
-            String bonus = row.get(10);
-            String bonusType = row.get(11);
-            String salary = row.get(12);
-
-            Employee employee = new Employee(departmentName, position, lastName, firstName, middleName, gender, birthDate, employeeId, startDate, currency, bonus, bonusType, salary);
-            employees.add(employee);
-        }
+        EmployeeParser parser = new EmployeeParser();
+        employees = parser.parseData(data);
     }
 
-
-        public void generateReport() {
+    private void generateReport() {
         Map<String, Department> departmentsMap = new HashMap<>();
 
         for (Employee employee : employees) {
-            String departmentName = employee.departmentName();
+            String departmentName = employee.getDepartmentName();
             Department department = departmentsMap.get(departmentName);
 
             if (department == null) {
@@ -52,7 +29,7 @@ public class OrganizationStructureReport {
                 departmentsMap.put(departmentName, department);
             }
 
-            if (employee.position().equals("Начальник")) {
+            if (employee.getPosition().equals("Начальник")) {
                 department.setManager(employee);
             } else {
                 department.addEmployee(employee);
@@ -60,21 +37,27 @@ public class OrganizationStructureReport {
         }
 
         for (Department department : departmentsMap.values()) {
-            if (!department.getEmployees().isEmpty() || department.getManager() != null) {
-                System.out.println("\n\t\t                   Отдел " + department.getName() + ":");
-            }
+            System.out.println("========================================================================================");
+            System.out.println("                                 Отдел: " + department.getName());
             if (department.getManager() != null) {
-                System.out.println("  Начальник :  " + department.getManager().getFullName() + " (пол " + department.getManager().gender() + ", дата рождения " + department.getManager().birthDate() + ")");
+                System.out.println("\tНачальник: " + department.getManager().getFullName() +
+                        " (пол " + department.getManager().getGender() + ", дата рождения " + department.getManager().getBirthDate() + ")");
             }
             List<Employee> employees = department.getEmployees();
 
             if (!employees.isEmpty()) {
-                System.out.println("  Подчиненные:  ");
+                System.out.println("\tПодчиненные:");
                 for (Employee employee : employees) {
-                    System.out.println("    " + employee.getFullName() + " (пол " + employee.gender() + ", дата рождения " + employee.birthDate() + ")");
+                    System.out.println("\t\t" + employee.getFullName() +
+                            " (пол " + employee.getGender() + ", дата рождения " + employee.getBirthDate() + ")");
                 }
+            } else {
+                System.out.println("\tОтсутствуют подчиненные.");
             }
         }
+    }
+    public void getGeneralReport(){
+        generateReport();
     }
 
     private static class Department {
@@ -82,53 +65,31 @@ public class OrganizationStructureReport {
         private Employee manager;
         private final List<Employee> employees;
 
-        public Department(String name) {
+        private Department(String name) {
             this.name = name;
             employees = new ArrayList<>();
         }
 
-        public String getName() {
+        private String getName() {
             return name;
         }
 
-        public Employee getManager() {
+        private Employee getManager() {
             return manager;
         }
 
-        public void setManager(Employee manager) {
+        private void setManager(Employee manager) {
             this.manager = manager;
         }
 
-        public List<Employee> getEmployees() {
+        private List<Employee> getEmployees() {
             return employees;
         }
 
-        public void addEmployee(Employee employee) {
+        private void addEmployee(Employee employee) {
             employees.add(employee);
         }
     }
 
-    private record Employee(String departmentName, String position, String lastName, String firstName,
-                            String middleName, String gender, String birthDate, String employeeId, String startDate,
-                            String currency, String bonus, String bonusType, String salary) {
+}
 
-        public String getFullName() {
-                return lastName + " " + firstName + " " + middleName;
-            }
-        }
-
-
-        public static void main(String[] args) {
-            try {
-                RoleAssigner roleAssigner = new RoleAssigner();
-                roleAssigner.assignRoles();
-                ArrayList<ArrayList<String>> dataWithRoles = roleAssigner.getData();
-
-                OrganizationStructureReport report = new OrganizationStructureReport(dataWithRoles);
-                report.generateReport();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    
