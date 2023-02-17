@@ -28,27 +28,24 @@ public class SelectMenu {
     }
 
     private void selectsMenuItemsAdmin() throws IOException {
-        DataTable dataTable = new DataTable();
-        Menu menu = new Menu();
         int numberMenu = scanner.nextInt();
         switch (numberMenu){
             case 2:
-                menu.getPrintMenuReport();
+                new Menu().getPrintMenuReport();
                 selectsMenuReport();
                 break;
             case 3 :
-                dataTable.setVisible(true);
+                new DataTable().setVisible(true);
                 break;
 
         }
-        menu.getPrintMenuAdmin();
+        new Menu().getPrintMenuAdmin();
         selectsMenuItemsAdmin();
     }
     public  void getSelectMenuItemsAdmin() throws IOException {
         selectsMenuItemsAdmin();
     }
     private void selectsMenuReport() throws IOException {
-        Menu menu = new Menu();
 
         int numberSelect = scanner.nextInt();
         switch (numberSelect){
@@ -75,6 +72,7 @@ public class SelectMenu {
                 reportGenerator.generateReport();
                 break;
         }
+        Menu menu = new Menu();
         menu.getPrintMenuReport();
         selectsMenuReport();
 

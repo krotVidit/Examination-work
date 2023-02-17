@@ -26,7 +26,7 @@ public class TopSalaryReportGenerator {
         });
 
         // Выводим информацию о ТОП-10 самых дорогих сотрудниках
-        System.out.println("ТОП-10 самых дорогих сотрудников:");
+        System.out.println("ТОП самых дорогих сотрудников:");
         for (int i = 0; i < 10 && i < employees.size(); i++) {
             Employee employee = employees.get(i);
             System.out.printf("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());

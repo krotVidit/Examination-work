@@ -20,7 +20,7 @@ public class TopTenEmployeeReport {
         // Сортируем сотрудников по длительности работы в организации в порядке убывания
         employees.sort(Comparator.comparing(Employee::getDurationOfWork).reversed());
 
-        // Создаем список из ТОП-10 самых преданных сотрудников
+
         List<Employee> topTenEmployees = new ArrayList<>();
         for (int i = 0; i < Math.min(10, employees.size()); i++) {
             topTenEmployees.add(employees.get(i));
@@ -28,7 +28,7 @@ public class TopTenEmployeeReport {
 
         // Формируем отчет и сохраняем в файл
         try (FileWriter writer = new FileWriter("top_ten_employee_report.txt")) {
-            writer.write("ТОП-10 самых преданных сотрудников по количеству лет работы в организации:\n");
+            writer.write("ТОП самых преданных сотрудников по количеству лет работы в организации:\n");
             for (int i = 0; i < topTenEmployees.size(); i++) {
                 Employee employee = topTenEmployees.get(i);
                 String line = String.format("%d. %s - %d лет работы\n", i + 1, employee.getFullName(), employee.getDurationOfWork());
