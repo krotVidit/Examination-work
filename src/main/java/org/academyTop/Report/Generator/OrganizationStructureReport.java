@@ -1,4 +1,7 @@
-package org.academyTop.Report;
+package org.academyTop.Report.Generator;
+
+import org.academyTop.Report.Employee;
+import org.academyTop.Report.EmployeeParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;

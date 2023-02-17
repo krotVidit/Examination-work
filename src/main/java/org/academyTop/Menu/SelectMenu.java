@@ -1,8 +1,12 @@
 package org.academyTop.Menu;
 
-import org.academyTop.DataBase;
-import org.academyTop.DataTable;
+import org.academyTop.DataBase.DataBase;
+import org.academyTop.DataBase.DataTable;
 import org.academyTop.Report.*;
+import org.academyTop.Report.Generator.OrganizationStructureReport;
+import org.academyTop.Report.Generator.ReportGenerator;
+import org.academyTop.Report.Generator.TopSalaryReportGenerator;
+import org.academyTop.Report.Generator.TopTenEmployeeReport;
 
 import java.io.IOException;
 import java.util.ArrayList;

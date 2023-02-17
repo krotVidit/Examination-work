@@ -1,6 +1,6 @@
 package org.academyTop.Report;
 
-import org.academyTop.DataBase;
+import org.academyTop.DataBase.DataBase;
 
 import java.io.IOException;
 import java.util.ArrayList;

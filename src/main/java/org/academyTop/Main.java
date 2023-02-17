@@ -1,5 +1,6 @@
 package org.academyTop;
 
+import org.academyTop.DataBase.LoginPassword;
 import org.academyTop.Menu.Menu;
 
 import java.io.IOException;

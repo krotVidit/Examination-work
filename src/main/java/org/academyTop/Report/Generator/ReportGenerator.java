@@ -1,4 +1,6 @@
-package org.academyTop.Report;
+package org.academyTop.Report.Generator;
+
+import org.academyTop.Report.Employee;
 
 import java.io.FileWriter;
 import java.io.IOException;

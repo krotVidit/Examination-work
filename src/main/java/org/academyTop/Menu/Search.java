@@ -1,6 +1,6 @@
 package org.academyTop.Menu;
 
-import org.academyTop.DataBase;
+import org.academyTop.DataBase.DataBase;
 
 import java.util.Scanner;
 

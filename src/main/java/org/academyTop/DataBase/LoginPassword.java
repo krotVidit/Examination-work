@@ -1,4 +1,4 @@
-package org.academyTop;
+package org.academyTop.DataBase;
 
 import org.academyTop.Menu.Menu;
 

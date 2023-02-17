@@ -3,7 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/company.xls" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/academyTop/Report/OrganizationStructureReport.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/academyTop/Report/Generator/OrganizationStructureReport.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>
