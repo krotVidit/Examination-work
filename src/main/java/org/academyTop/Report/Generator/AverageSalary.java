@@ -75,8 +75,8 @@ public class AverageSalary {
             double departmentAverageSalary = entry.getValue();
             fileWriter.write("Средняя зарплата по отделу " + department + ": " + departmentAverageSalary + "\n");
         }
+        System.out.println("\t\t\nОтчёт успешно сохранён в файл в Report");
         fileWriter.close();
-        System.out.println("\tОтчёт успешно сохранён в файл в Report");
     }
     public void getSaveReportToFile() throws IOException {
         saveReportToFile();

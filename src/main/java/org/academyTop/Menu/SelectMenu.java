@@ -35,9 +35,15 @@ public class SelectMenu {
             case 2:
                 new Menu().getPrintMenuReport();
                 selectsMenuReport();
+                new Menu().getPrintMenuAdmin();
+                selectsMenuItemsAdmin();
                 break;
             case 3 :
                 new DataTable().setVisible(true);
+                new Menu().getPrintMenuAdmin();
+                selectsMenuItemsAdmin();
+                break;
+            case 4:
                 break;
 
         }
@@ -59,7 +65,6 @@ public class SelectMenu {
                 break;
             case 2:
                 reportGenerator.getGenerateReport();
-
                 reportGenerator.getSaveReportToFile();
                 break;
             case 3:

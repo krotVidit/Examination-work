@@ -2,6 +2,9 @@ package org.academyTop.Report.Generator;
 
 import org.academyTop.Report.Employee;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -25,16 +28,25 @@ public class TopHighlyPaidEmployees {
             }
         });
 
+        // Название файла и путь для сохранения отчета
+        String fileName = "." + File.separator + "Report"+File.separator+"Top_highly_paid_employees.txt";
 
-        System.out.println("ТОП самых высокооплачиваемых сотрудников:");
-        for (int i = 0; i < 10 && i < employees.size(); i++) {
-            Employee employee = employees.get(i);
-            System.out.printf("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write("ТОП самых высокооплачиваемых сотрудников:\n");
+            for (int i = 0; i < 10 && i < employees.size(); i++) {
+                Employee employee = employees.get(i);
+                String line = String.format("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());
+                writer.write(line);
+                System.out.print(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        System.out.println("\t\t\nОтчёт успешно сохранён в файл  Report");
     }
-    public void getCreatesReportHighlyPaidEmployees(){
+
+    public void getCreatesReportHighlyPaidEmployees() {
         createsReportHighlyPaidEmployees();
     }
-
 }
-
