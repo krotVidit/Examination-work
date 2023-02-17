@@ -1,7 +1,5 @@
 package org.academyTop.Report;
 
-import org.academyTop.DataBase;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -65,17 +63,6 @@ public class ReportGenerator {
         }
         fileWriter.close();
         System.out.println("Отчёт успешно сохранён в файл " + fileName);
-    }
-
-    public static void main(String[] args) throws IOException {
-        DataBase database = new DataBase();
-        RoleAssigner roleAssigner = new RoleAssigner();
-        EmployeeParser employeeParser = new EmployeeParser();
-        List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
-
-        ReportGenerator reportGenerator = new ReportGenerator(employees);
-        reportGenerator.generateReport();
-        reportGenerator.saveReportToFile("report.txt");
     }
 }
 
