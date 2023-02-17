@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class SelectMenu {
     Scanner scanner = new Scanner(System.in);
-    DataTable dataTable = new DataTable();
     RoleAssigner roleAssigner = new RoleAssigner();
     EmployeeParser employeeParser = new EmployeeParser();
     DataBase dataBase = new DataBase();
@@ -25,26 +24,27 @@ public class SelectMenu {
     }
 
     private void selectsMenuItemsAdmin() throws IOException {
+        DataTable dataTable = new DataTable();
+        Menu menu = new Menu();
         int numberMenu = scanner.nextInt();
         switch (numberMenu){
-
             case 2:
-                Menu menu = new Menu();
                 menu.getPrintMenuReport();
                 selectsMenuReport();
-
+                break;
             case 3 :
                 dataTable.setVisible(true);
-
                 break;
 
         }
+        menu.getPrintMenuAdmin();
         selectsMenuItemsAdmin();
     }
     public  void getSelectMenuItemsAdmin() throws IOException {
         selectsMenuItemsAdmin();
     }
     private void selectsMenuReport() throws IOException {
+        Menu menu = new Menu();
 
         int numberSelect = scanner.nextInt();
         switch (numberSelect){
@@ -70,7 +70,9 @@ public class SelectMenu {
                 TopTenEmployeeReport reportGenerator = new TopTenEmployeeReport(employees);
                 reportGenerator.generateReport();
                 break;
-
         }
+        menu.getPrintMenuReport();
+        selectsMenuReport();
+
     }
 }
