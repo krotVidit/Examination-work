@@ -1,7 +1,5 @@
 package org.academyTop.Report;
 
-import org.academyTop.DataBase;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,19 +37,5 @@ public class TopTenEmployeeReport {
         }
     }
 
-    public static void main(String[] args) {
-        try {
-            DataBase database = new DataBase();
-            RoleAssigner roleAssigner = new RoleAssigner();
-            EmployeeParser employeeParser = new EmployeeParser();
-
-            List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
-
-            TopTenEmployeeReport reportGenerator = new TopTenEmployeeReport(employees);
-            reportGenerator.generateReport();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

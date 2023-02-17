@@ -1,9 +1,5 @@
 package org.academyTop.Report;
 
-import org.academyTop.DataBase;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -34,22 +30,6 @@ public class TopSalaryReportGenerator {
             System.out.printf("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());
         }
     }
-    public static void main(String[] args) {
-        try {
-            // Получаем данные из файла Excel
-            DataBase database = new DataBase();
-            List<ArrayList<String>> data = database.getPutDataBaseExelInArrayList();
 
-            // Преобразуем данные в список объектов Employee
-            EmployeeParser parser = new EmployeeParser();
-            List<Employee> employees = parser.parseData((ArrayList<ArrayList<String>>) data);
-
-            // Создаем отчет по ТОП-10 самых дорогих сотрудников
-            TopSalaryReportGenerator reportGenerator = new TopSalaryReportGenerator(employees);
-            reportGenerator.generateReport();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
+

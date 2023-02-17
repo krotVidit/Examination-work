@@ -14,6 +14,11 @@ public class SelectMenu {
     DataTable dataTable = new DataTable();
     RoleAssigner roleAssigner = new RoleAssigner();
     EmployeeParser employeeParser = new EmployeeParser();
+    DataBase dataBase = new DataBase();
+    List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
+    ReportGenerator reportGenerator = new ReportGenerator(employees);
+    List<ArrayList<String>> data = dataBase.getPutDataBaseExelInArrayList();
+    List<Employee> employees1 = employeeParser.parseData((ArrayList<ArrayList<String>>) data);
 
 
     public SelectMenu() throws IOException {
@@ -22,20 +27,12 @@ public class SelectMenu {
     private void selectsMenuItemsAdmin() throws IOException {
         int numberMenu = scanner.nextInt();
         switch (numberMenu){
-            case 1: DataBase database = new DataBase();
-                List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
 
-                ReportGenerator reportGenerator = new ReportGenerator(employees);
-                reportGenerator.generateReport();
-                reportGenerator.saveReportToFile("report.txt");
-                break;
             case 2:
-                roleAssigner.assignRoles();
-                ArrayList<ArrayList<String>> dataWithRoles = roleAssigner.getData();
+                Menu menu = new Menu();
+                menu.getPrintMenuReport();
+                selectsMenuReport();
 
-                OrganizationStructureReport report = new OrganizationStructureReport(dataWithRoles);
-                report.getGeneralReport();
-                break;
             case 3 :
                 dataTable.setVisible(true);
 
@@ -46,5 +43,34 @@ public class SelectMenu {
     }
     public  void getSelectMenuItemsAdmin() throws IOException {
         selectsMenuItemsAdmin();
+    }
+    private void selectsMenuReport() throws IOException {
+
+        int numberSelect = scanner.nextInt();
+        switch (numberSelect){
+            case 1:
+                roleAssigner.assignRoles();
+                ArrayList<ArrayList<String>> dataWithRoles = roleAssigner.getData();
+                OrganizationStructureReport report = new OrganizationStructureReport(dataWithRoles);
+                report.getGeneralReport();
+                break;
+            case 2:
+                reportGenerator.generateReport();
+                reportGenerator.saveReportToFile("report.txt");
+                break;
+            case 3:
+                TopSalaryReportGenerator reportGenerator1 = new TopSalaryReportGenerator(employees);
+                reportGenerator1.generateReport();
+                break;
+            case 4:
+                EmployeeParser employeeParser = new EmployeeParser();
+
+                List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
+
+                TopTenEmployeeReport reportGenerator = new TopTenEmployeeReport(employees);
+                reportGenerator.generateReport();
+                break;
+
+        }
     }
 }
