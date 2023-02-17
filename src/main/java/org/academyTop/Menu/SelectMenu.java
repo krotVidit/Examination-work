@@ -2,11 +2,13 @@ package org.academyTop.Menu;
 
 import org.academyTop.DataBase.DataBase;
 import org.academyTop.DataBase.DataTable;
-import org.academyTop.Report.*;
+import org.academyTop.Report.Employee;
+import org.academyTop.Report.EmployeeParser;
+import org.academyTop.Report.Generator.AverageSalary;
 import org.academyTop.Report.Generator.OrganizationStructureReport;
-import org.academyTop.Report.Generator.ReportGenerator;
-import org.academyTop.Report.Generator.TopSalaryReportGenerator;
-import org.academyTop.Report.Generator.TopTenEmployeeReport;
+import org.academyTop.Report.Generator.TopHighlyPaidEmployees;
+import org.academyTop.Report.Generator.TopLoyalEmployees;
+import org.academyTop.Report.RoleAssigner;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class SelectMenu {
     EmployeeParser employeeParser = new EmployeeParser();
     DataBase dataBase = new DataBase();
     List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
-    ReportGenerator reportGenerator = new ReportGenerator(employees);
+    AverageSalary reportGenerator = new AverageSalary(employees);
     List<ArrayList<String>> data = dataBase.getPutDataBaseExelInArrayList();
     List<Employee> employees1 = employeeParser.parseData((ArrayList<ArrayList<String>>) data);
 
@@ -56,20 +58,21 @@ public class SelectMenu {
                 report.getGeneralReport();
                 break;
             case 2:
-                reportGenerator.generateReport();
+                reportGenerator.getGenerateReport();
+
                 reportGenerator.saveReportToFile("report.txt");
                 break;
             case 3:
-                TopSalaryReportGenerator reportGenerator1 = new TopSalaryReportGenerator(employees);
-                reportGenerator1.generateReport();
+                TopHighlyPaidEmployees reportGenerator1 = new TopHighlyPaidEmployees(employees);
+                reportGenerator1.getCreatesReportHighlyPaidEmployees();
                 break;
             case 4:
                 EmployeeParser employeeParser = new EmployeeParser();
 
                 List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
 
-                TopTenEmployeeReport reportGenerator = new TopTenEmployeeReport(employees);
-                reportGenerator.generateReport();
+                TopLoyalEmployees reportGenerator = new TopLoyalEmployees(employees);
+                reportGenerator.createReportLoyalEmployees();
                 break;
         }
         Menu menu = new Menu();

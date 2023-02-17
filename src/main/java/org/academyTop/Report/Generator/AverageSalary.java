@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ReportGenerator {
+public class AverageSalary {
     private List<Employee> employees;
 
-    public ReportGenerator(List<Employee> employees) {
+    public AverageSalary(List<Employee> employees) {
         this.employees = employees;
     }
 
-    public Map<String, Double> getAverageSalaryByDepartment() {
+    private Map<String, Double> averageSalaryByDepartment() {
         Map<String, Double> departmentSalaryMap = new HashMap<>();
         Map<String, List<Employee>> employeesByDepartment = employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartmentName));
@@ -31,8 +31,11 @@ public class ReportGenerator {
         }
         return departmentSalaryMap;
     }
+    public Map<String, Double> getAverageSalaryByDepartment(){
+        return averageSalaryByDepartment();
+    }
 
-    public double getAverageSalary() {
+    private double averageSalary() {
         double totalSalary = 0;
         for (Employee employee : employees) {
             totalSalary += Double.parseDouble(employee.getSalary().replaceAll("[^\\d.]", ""));
@@ -40,7 +43,11 @@ public class ReportGenerator {
         return totalSalary / employees.size();
     }
 
-    public void generateReport() {
+    public double getAverageSalary(){
+        return averageSalary();
+    }
+
+    private void generateReport() {
         Map<String, Double> averageSalaryByDepartment = getAverageSalaryByDepartment();
         double averageSalary = getAverageSalary();
 
@@ -50,6 +57,9 @@ public class ReportGenerator {
             double departmentAverageSalary = entry.getValue();
             System.out.println("Средняя зарплата по отделу " + department + ": " + departmentAverageSalary);
         }
+    }
+    public void getGenerateReport(){
+        generateReport();
     }
 
     public void saveReportToFile(String fileName) throws IOException {
