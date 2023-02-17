@@ -3,6 +3,9 @@ package org.academyTop.Report.Generator;
 import org.academyTop.Report.Employee;
 import org.academyTop.Report.EmployeeParser;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,9 +42,10 @@ public class OrganizationStructureReport {
             }
         }
 
+        // Выводим отчет на консоль
         for (Department department : departmentsMap.values()) {
             System.out.println("========================================================================================");
-            System.out.println("                                 Отдел: " + department.getName());
+            System.out.println("            Отдел: " + department.getName());
             if (department.getManager() != null) {
                 System.out.println("\tНачальник: " + department.getManager().getFullName() +
                         " (пол " + department.getManager().getGender() + ", дата рождения " + department.getManager().getBirthDate() + ")");
@@ -49,7 +53,7 @@ public class OrganizationStructureReport {
             List<Employee> employees = department.getEmployees();
 
             if (!employees.isEmpty()) {
-                System.out.println("\tПодчиненные:");
+                System.out.println("\t\nПодчиненные:");
                 for (Employee employee : employees) {
                     System.out.println("\t\t" + employee.getFullName() +
                             " (пол " + employee.getGender() + ", дата рождения " + employee.getBirthDate() + ")");
@@ -58,11 +62,64 @@ public class OrganizationStructureReport {
                 System.out.println("\tОтсутствуют подчиненные.");
             }
         }
+
+        saveReportToFile();
     }
 
-
-    public void getGeneralReport(){
+    public void getGeneralReport() {
         generateReport();
+    }
+
+    private void saveReportToFile() {
+        Map<String, Department> departmentsMap = new HashMap<>();
+
+        for (Employee employee : employees) {
+            String departmentName = employee.getDepartmentName();
+            Department department = departmentsMap.get(departmentName);
+
+            if (department == null) {
+                department = new Department(departmentName);
+                departmentsMap.put(departmentName, department);
+            }
+
+            if (employee.getPosition().equals("Начальник")) {
+                department.setManager(employee);
+            } else {
+                department.addEmployee(employee);
+            }
+        }
+
+        String fileName = "." + File.separator + "Report" + File.separator + "Organization_structure_report.txt";
+
+        try (FileWriter writer = new FileWriter(fileName)) {
+            for (Department department : departmentsMap.values()) {
+                writer.write("========================================================================================\n");
+                writer.write( "                          Отдел: " + department.getName()+"\n");
+                if (department.getManager() != null) {
+                    writer.write("\tНачальник: " + department.getManager().getFullName() +
+                            " (пол " + department.getManager().getGender() + ", дата рождения " + department.getManager().getBirthDate() + ")\n");
+                }
+                List<Employee> employees = department.getEmployees();
+
+                if (!employees.isEmpty()) {
+                    writer.write("\t\nПодчиненные:\n");
+                    for (Employee employee : employees) {
+                        writer.write("\t\t" + employee.getFullName() +
+                                " (пол " + employee.getGender() + ", дата рождения " + employee.getBirthDate() + ")\n");
+                    }
+                } else {
+                    writer.write("\tОтсутствуют подчиненные.\n");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("\t\nОтчёт успешно сохранён в файл Report");
+    }
+
+    public void getSaveReportToFile() {
+        saveReportToFile();
     }
 
 
@@ -96,6 +153,5 @@ public class OrganizationStructureReport {
             employees.add(employee);
         }
     }
-
 }
 
