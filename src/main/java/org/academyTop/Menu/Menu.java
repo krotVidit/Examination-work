@@ -27,7 +27,7 @@ public class Menu {
                 Select Action
                 _____________""");
             System.out.println("1.search by employees\n2.Create a report\n3.DataBase\n4.Exit Program");
-            selectMenu.getSelectMenuItemsAdmin();
+            selectMenu.getSelectsMenuItemsAdmin();
 
         }
         public void getPrintMenuAdmin() throws IOException {
