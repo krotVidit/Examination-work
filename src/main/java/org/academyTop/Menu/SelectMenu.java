@@ -44,11 +44,15 @@ public class SelectMenu {
                 selectsMenuItemsAdmin();
                 break;
             case 4:
+                System.exit(0);
                 break;
+            default:
+                System.out.println("\nInvalid value entered\n");
+                Menu menu = new Menu();
+                menu.getPrintMenuAdmin();
+                selectsMenuItemsAdmin();
 
         }
-        new Menu().getPrintMenuAdmin();
-        selectsMenuItemsAdmin();
     }
     public  void getSelectMenuItemsAdmin() throws IOException {
         selectsMenuItemsAdmin();
@@ -79,10 +83,20 @@ public class SelectMenu {
                 TopLoyalEmployees reportGenerator = new TopLoyalEmployees(employees);
                 reportGenerator.createReportLoyalEmployees();
                 break;
-        }
-        Menu menu = new Menu();
-        menu.getPrintMenuReport();
-        selectsMenuReport();
+            case 5:
+                Menu menu = new Menu();
+                menu.getPrintMenuAdmin();
+                selectsMenuItemsAdmin();
+                break;
+            case 6:
+                System.exit(0);
+                break;
 
+            default:
+                System.out.println("\nInvalid value entered\n");
+                Menu menu1 = new Menu();
+                menu1.getPrintMenuReport();
+                selectsMenuReport();
+        }
     }
 }
