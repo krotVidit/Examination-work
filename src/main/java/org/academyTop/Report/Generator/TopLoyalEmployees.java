@@ -20,7 +20,7 @@ public class TopLoyalEmployees {
         employees.sort(Comparator.comparing(Employee::getDurationOfWork).reversed());
 
         try (FileWriter writer = new FileWriter("." + File.separator + "Report" + File.separator + "Top_loyal_employees.txt")) {
-            writer.write("Отчет по всем сотрудникам:\n");
+            writer.write("\n\n\nОтчет по всем сотрудникам:\n");
             for (int i = 0; i < employees.size(); i++) {
                 Employee employee = employees.get(i);
                 String line = String.format("%d. %s - %d лет работы\n", i + 1, employee.getFullName(), employee.getDurationOfWork());
@@ -30,6 +30,6 @@ public class TopLoyalEmployees {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("\t\t\nОтчёт успешно сохранён в файл в Report");
+        System.out.println("\t\t\nОтчёт успешно сохранён в файл в Report\n\n\n");
     }
 }

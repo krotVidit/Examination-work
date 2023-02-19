@@ -93,7 +93,7 @@ public class OrganizationStructureReport {
 
         try (FileWriter writer = new FileWriter(fileName)) {
             for (Department department : departmentsMap.values()) {
-                writer.write("========================================================================================\n");
+                writer.write("\n\n\n========================================================================================\n");
                 writer.write( "                          Отдел: " + department.getName()+"\n");
                 if (department.getManager() != null) {
                     writer.write("\tНачальник: " + department.getManager().getFullName() +
@@ -115,7 +115,7 @@ public class OrganizationStructureReport {
             e.printStackTrace();
         }
 
-        System.out.println("\t\nОтчёт успешно сохранён в файл Report");
+        System.out.println("\t\nОтчёт успешно сохранён в файл Report\n\n\n");
     }
 
     public void getSaveReportToFile() {

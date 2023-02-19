@@ -32,7 +32,7 @@ public class TopHighlyPaidEmployees {
         String fileName = "." + File.separator + "Report"+File.separator+"Top_highly_paid_employees.txt";
 
         try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("ТОП самых высокооплачиваемых сотрудников:\n");
+            writer.write("\n\n\nТОП самых высокооплачиваемых сотрудников:\n");
             for (int i = 0; i < 10 && i < employees.size(); i++) {
                 Employee employee = employees.get(i);
                 String line = String.format("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());
@@ -43,7 +43,7 @@ public class TopHighlyPaidEmployees {
             e.printStackTrace();
         }
 
-        System.out.println("\t\t\nОтчёт успешно сохранён в файл  Report");
+        System.out.println("\t\t\nОтчёт успешно сохранён в файл  Report\n\n\n");
     }
 
     public void getCreatesReportHighlyPaidEmployees() {
