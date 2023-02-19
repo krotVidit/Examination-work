@@ -20,10 +20,10 @@ public class SelectMenu {
     RoleAssigner roleAssigner = new RoleAssigner();
     EmployeeParser employeeParser = new EmployeeParser();
     DataBase dataBase = new DataBase();
-    List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
+    List<Employee> employees = employeeParser.getParseData(roleAssigner.getData());
     AverageSalary reportGenerator = new AverageSalary(employees);
     List<ArrayList<String>> data = dataBase.getPutDataBaseExelInArrayList();
-    List<Employee> employees1 = employeeParser.parseData((ArrayList<ArrayList<String>>) data);
+    List<Employee> employees1 = employeeParser.getParseData((ArrayList<ArrayList<String>>) data);
 
 
     public SelectMenu() throws IOException {
@@ -35,7 +35,6 @@ public class SelectMenu {
             switch (numberMenu) {
                 case 1:
                     new DataTable().setVisible(true);
-                    System.out.println("");
                     new Menu().getPrintMenuAdmin();
                     selectsMenuItemsAdmin();
                     break;
@@ -87,7 +86,7 @@ public class SelectMenu {
                 case 4:
                     EmployeeParser employeeParser = new EmployeeParser();
 
-                    List<Employee> employees = employeeParser.parseData(roleAssigner.getData());
+                    List<Employee> employees = employeeParser.getParseData(roleAssigner.getData());
 
                     TopLoyalEmployees reportGenerator = new TopLoyalEmployees(employees);
                     reportGenerator.createReportLoyalEmployees();

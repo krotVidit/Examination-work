@@ -5,7 +5,7 @@ import java.util.List;
 
 public class EmployeeParser {
 
-    public List<Employee> parseData(ArrayList<ArrayList<String>> data) {
+    private List<Employee> parseData(ArrayList<ArrayList<String>> data) {
         List<Employee> employees = new ArrayList<>();
 
         boolean firstRowSkipped = false;
@@ -34,5 +34,9 @@ public class EmployeeParser {
         }
 
         return employees;
+    }
+
+    public List<Employee> getParseData(ArrayList<ArrayList<String>> data) {
+        return parseData(data);
     }
 }

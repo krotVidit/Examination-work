@@ -20,7 +20,7 @@ public class OrganizationStructureReport {
 
     public OrganizationStructureReport(ArrayList<ArrayList<String>> data) {
         EmployeeParser parser = new EmployeeParser();
-        employees = parser.parseData(data);
+        employees = parser.getParseData(data);
     }
 
     private void generateReport() {
@@ -94,7 +94,7 @@ public class OrganizationStructureReport {
         try (FileWriter writer = new FileWriter(fileName)) {
             for (Department department : departmentsMap.values()) {
                 writer.write("\n\n\n========================================================================================\n");
-                writer.write( "                          Отдел: " + department.getName()+"\n");
+                writer.write( "\t\t\tОтдел: " + department.getName()+"\n");
                 if (department.getManager() != null) {
                     writer.write("\tНачальник: " + department.getManager().getFullName() +
                             " (пол " + department.getManager().getGender() + ", дата рождения " + department.getManager().getBirthDate() + ")\n");
@@ -102,7 +102,7 @@ public class OrganizationStructureReport {
                 List<Employee> employees = department.getEmployees();
 
                 if (!employees.isEmpty()) {
-                    writer.write("\t\nПодчиненные:\n");
+                    writer.write("\nПодчиненные:\n");
                     for (Employee employee : employees) {
                         writer.write("\t\t" + employee.getFullName() +
                                 " (пол " + employee.getGender() + ", дата рождения " + employee.getBirthDate() + ")\n");
