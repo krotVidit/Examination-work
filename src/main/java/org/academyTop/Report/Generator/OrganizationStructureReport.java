@@ -23,7 +23,7 @@ public class OrganizationStructureReport {
         employees = parser.getParseData(data);
     }
 
-    private void generateReport() {
+    private void generatesHierarchyReport() {
         Map<String, Department> departmentsMap = new HashMap<>();
 
         for (Employee employee : employees) {
@@ -61,14 +61,14 @@ public class OrganizationStructureReport {
             }
         }
 
-        saveReportToFile();
+        savesReportToFile();
     }
 
-    public void getGeneralReport() {
-        generateReport();
+    public void getGeneratesHierarchyReport() {
+        generatesHierarchyReport();
     }
 
-    private void saveReportToFile() {
+    private void savesReportToFile() {
         Map<String, Department> departmentsMap = new HashMap<>();
 
         for (Employee employee : employees) {
@@ -116,8 +116,8 @@ public class OrganizationStructureReport {
         System.out.println("\t\nОтчёт успешно сохранён в файл Report\n\n\n");
     }
 
-    public void getSaveReportToFile() {
-        saveReportToFile();
+    public void getSavesReportToFile() {
+        savesReportToFile();
     }
 
 

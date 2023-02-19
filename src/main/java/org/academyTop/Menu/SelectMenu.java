@@ -21,7 +21,7 @@ public class SelectMenu {
     EmployeeParser employeeParser = new EmployeeParser();
     DataBase dataBase = new DataBase();
     List<Employee> employees = employeeParser.getParseData(roleAssigner.getData());
-    AverageSalary reportGenerator = new AverageSalary(employees);
+    AverageSalary reportGeneratorAverageSalary = new AverageSalary(employees);
     List<ArrayList<String>> data = dataBase.getPutDataBaseExelInArrayList();
     List<Employee> employees1 = employeeParser.getParseData((ArrayList<ArrayList<String>>) data);
 
@@ -72,24 +72,24 @@ public class SelectMenu {
                 case 1:
                     roleAssigner.getAssignsRole();
                     ArrayList<ArrayList<String>> dataWithRoles = roleAssigner.getData();
-                    OrganizationStructureReport report = new OrganizationStructureReport(dataWithRoles);
-                    report.getGeneralReport();
+                    OrganizationStructureReport reportStructureOrganization = new OrganizationStructureReport(dataWithRoles);
+                    reportStructureOrganization.getGeneratesHierarchyReport();
                     break;
                 case 2:
-                    reportGenerator.getGenerateReport();
-                    reportGenerator.getSaveReportToFile();
+                    reportGeneratorAverageSalary.getGenerateReportAverageSalary();
+                    reportGeneratorAverageSalary.getSavesReportToFile();
                     break;
                 case 3:
-                    TopHighlyPaidEmployees reportGenerator1 = new TopHighlyPaidEmployees(employees);
-                    reportGenerator1.getCreatesReportHighlyPaidEmployees();
+                    TopHighlyPaidEmployees reportGeneratorHighlyPaid = new TopHighlyPaidEmployees(employees);
+                    reportGeneratorHighlyPaid.getCreatesReportHighlyPaidEmployees();
                     break;
                 case 4:
                     EmployeeParser employeeParser = new EmployeeParser();
 
-                    List<Employee> employees = employeeParser.getParseData(roleAssigner.getData());
+                    List<Employee> employeeParserData = employeeParser.getParseData(roleAssigner.getData());
 
-                    TopLoyalEmployees reportGenerator = new TopLoyalEmployees(employees);
-                    reportGenerator.getCreateReportLoyalEmployees();
+                    TopLoyalEmployees reportGeneratorLoyalEmployees = new TopLoyalEmployees(employeeParserData);
+                    reportGeneratorLoyalEmployees.getCreateReportLoyalEmployees();
                     break;
                 case 5:
                     Menu menu = new Menu();

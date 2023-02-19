@@ -17,7 +17,7 @@ public class AverageSalary {
         this.employees = employees;
     }
 
-    private Map<String, Double> averageSalaryByDepartment() {
+    private Map<String, Double> calculatesAverageSalaryByDepartment() {
         Map<String, Double> departmentSalaryMap = new HashMap<>();
         Map<String, List<Employee>> employeesByDepartment = employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartmentName));
@@ -32,11 +32,11 @@ public class AverageSalary {
         }
         return departmentSalaryMap;
     }
-    public Map<String, Double> getAverageSalaryByDepartment(){
-        return averageSalaryByDepartment();
+    public Map<String, Double> getCalculatesAverageSalaryByDepartment(){
+        return calculatesAverageSalaryByDepartment();
     }
 
-    private double averageSalary() {
+    private double calculatesAverageSalaryOrganization() {
         double totalSalary = 0;
         for (Employee employee : employees) {
             totalSalary += Double.parseDouble(employee.getSalary().replaceAll("[^\\d.]", ""));
@@ -44,13 +44,13 @@ public class AverageSalary {
         return totalSalary / employees.size();
     }
 
-    public double getAverageSalary(){
-        return averageSalary();
+    public double getCalculatesAverageSalaryOrganization(){
+        return calculatesAverageSalaryOrganization();
     }
 
-    private void generateReport() {
-        Map<String, Double> averageSalaryByDepartment = getAverageSalaryByDepartment();
-        double averageSalary = getAverageSalary();
+    private void generateReportAverageSalary() {
+        Map<String, Double> averageSalaryByDepartment = getCalculatesAverageSalaryByDepartment();
+        double averageSalary = getCalculatesAverageSalaryOrganization();
 
         System.out.println("Средняя зарплата по организации: " + averageSalary);
         for (Map.Entry<String, Double> entry : averageSalaryByDepartment.entrySet()) {
@@ -59,13 +59,13 @@ public class AverageSalary {
             System.out.println("Средняя зарплата по отделу " + department + ": " + departmentAverageSalary);
         }
     }
-    public void getGenerateReport(){
-        generateReport();
+    public void getGenerateReportAverageSalary(){
+        generateReportAverageSalary();
     }
 
-    private void saveReportToFile() throws IOException {
-        Map<String, Double> averageSalaryByDepartment = getAverageSalaryByDepartment();
-        double averageSalary = getAverageSalary();
+    private void savesReportToFile() throws IOException {
+        Map<String, Double> averageSalaryByDepartment = getCalculatesAverageSalaryByDepartment();
+        double averageSalary = getCalculatesAverageSalaryOrganization();
         String file = "."+ File.separator+"Report"+File.separator+"Average_salary.txt";
 
         FileWriter fileWriter = new FileWriter(file);
@@ -78,8 +78,8 @@ public class AverageSalary {
         System.out.println("\t\t\nОтчёт успешно сохранён в файл в Report\n\n\n");
         fileWriter.close();
     }
-    public void getSaveReportToFile() throws IOException {
-        saveReportToFile();
+    public void getSavesReportToFile() throws IOException {
+        savesReportToFile();
     }
 }
 
