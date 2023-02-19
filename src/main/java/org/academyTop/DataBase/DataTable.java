@@ -3,6 +3,8 @@ package org.academyTop.DataBase;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ public class DataTable extends JFrame {
 
     public DataTable() throws IOException {
         super("DataBase");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         System.out.println("\n\nDatabase started\n\n");
 
@@ -40,5 +42,12 @@ public class DataTable extends JFrame {
             ArrayList<String> row = data.get(i);
             model.addRow(row.toArray());
         }
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setVisible(false);
+            }
+        });
     }
 }
