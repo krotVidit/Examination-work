@@ -26,7 +26,7 @@ public class Menu {
 
                 Select Action
                 _____________""");
-            System.out.println("1.search by employees\n2.Create a report\n3.DataBase\n4.Exit Program");
+            System.out.println("1.DataBase\n2.Create a report\n3.Exit Program");
             selectMenu.getSelectsMenuItemsAdmin();
 
         }
@@ -34,15 +34,18 @@ public class Menu {
             printMenuAdmin();
         }
 
-    private void printMenuEmployee() {
+    // TODO: 19.02.2023 Меню для начальника и работника одинаковые - нужно будет исправить  
+    private void printMenuEmployee() throws IOException {
         System.out.println("""
 
-                Select Action
-                _____________""");
-        System.out.println("1.search by employees\n2.Create a report\n3.News blog\n");
+                    Select Action
+                    _____________""");
+        System.out.println("1.DataBase\n2.Create a report\n3.Exit Program");
+        selectMenu.getSelectsMenuItemsAdmin();
+
     }
 
-    public void getPrintMenuEmployee() {
+    public void getPrintMenuEmployee() throws IOException {
         printMenuEmployee();
     }
 

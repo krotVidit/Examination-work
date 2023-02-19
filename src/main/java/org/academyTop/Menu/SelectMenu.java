@@ -33,18 +33,20 @@ public class SelectMenu {
         try {
             int numberMenu = scanner.nextInt();
             switch (numberMenu) {
+                case 1:
+                    new DataTable().setVisible(true);
+                    System.out.println("");
+                    new Menu().getPrintMenuAdmin();
+                    selectsMenuItemsAdmin();
+                    break;
                 case 2:
                     new Menu().getPrintMenuReport();
                     selectsMenuReport();
                     new Menu().getPrintMenuAdmin();
                     selectsMenuItemsAdmin();
                     break;
+
                 case 3:
-                    new DataTable().setVisible(true);
-                    new Menu().getPrintMenuAdmin();
-                    selectsMenuItemsAdmin();
-                    break;
-                case 4:
                     System.exit(0);
                     break;
                 default:

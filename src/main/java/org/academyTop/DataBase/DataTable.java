@@ -15,6 +15,8 @@ public class DataTable extends JFrame {
         super("DataBase");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        System.out.println("\n\nDatabase started\n\n");
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screenSize.getWidth();
         int height = (int) screenSize.getHeight();
