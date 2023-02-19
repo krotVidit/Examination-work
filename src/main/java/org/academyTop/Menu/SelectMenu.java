@@ -81,7 +81,6 @@ public class SelectMenu {
                     break;
                 case 3:
                     TopHighlyPaidEmployees topHighlyPaidEmployees = new TopHighlyPaidEmployees(employees);
-                    topHighlyPaidEmployees.getCreatesReportHighlyPaidEmployees();
                     topHighlyPaidEmployees.getSavesReportToFile();
                     break;
                 case 4:

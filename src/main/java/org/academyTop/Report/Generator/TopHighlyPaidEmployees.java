@@ -12,11 +12,12 @@ public class TopHighlyPaidEmployees {
 
     private final List<Employee> employees;
 
+
     public TopHighlyPaidEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 
-    private void sortEmployeesBySalary() {
+    private void sortsEmployeesBySalary() {
         employees.sort(new Comparator<Employee>() {
             @Override
             public int compare(Employee e1, Employee e2) {
@@ -26,6 +27,10 @@ public class TopHighlyPaidEmployees {
             }
         });
     }
+    public void getSortsEmployeesBySalary(){
+        sortsEmployeesBySalary();
+    }
+
 
     private String createsReportHighlyPaidEmployees() {
         StringBuilder reportBuilder = new StringBuilder();
@@ -34,7 +39,7 @@ public class TopHighlyPaidEmployees {
             Employee employee = employees.get(i);
             String line = String.format("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());
             reportBuilder.append(line);
-            System.out.print(line);
+            System.out.println(line);
         }
         return reportBuilder.toString();
     }
@@ -54,6 +59,7 @@ public class TopHighlyPaidEmployees {
         System.out.println("\t\t\nОтчёт успешно сохранён в файл  Report\n\n\n");
         return report;
     }
+
     public String getSavesReportToFile(){
         String report = createsReportHighlyPaidEmployees();
         return savesReportToFile(report);
