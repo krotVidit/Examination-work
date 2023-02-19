@@ -16,8 +16,7 @@ public class TopHighlyPaidEmployees {
         this.employees = employees;
     }
 
-    private void createsReportHighlyPaidEmployees() {
-
+    private void sortEmployeesBySalary() {
         employees.sort(new Comparator<Employee>() {
             @Override
             public int compare(Employee e1, Employee e2) {
@@ -26,24 +25,38 @@ public class TopHighlyPaidEmployees {
                 return Double.compare(salary2, salary1);
             }
         });
-        String fileName = "." + File.separator + "Report"+File.separator+"Top_highly_paid_employees.txt";
+    }
+
+    private String createsReportHighlyPaidEmployees() {
+        StringBuilder reportBuilder = new StringBuilder();
+        reportBuilder.append("\n\n\nТОП самых высокооплачиваемых сотрудников:\n");
+        for (int i = 0; i < 10 && i < employees.size(); i++) {
+            Employee employee = employees.get(i);
+            String line = String.format("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());
+            reportBuilder.append(line);
+            System.out.print(line);
+        }
+        return reportBuilder.toString();
+    }
+    public String getCreatesReportHighlyPaidEmployees(){
+        return createsReportHighlyPaidEmployees();
+    }
+
+    private String savesReportToFile(String report) {
+        String fileName = "." + File.separator + "Report" + File.separator + "Top_highly_paid_employees.txt";
 
         try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("\n\n\nТОП самых высокооплачиваемых сотрудников:\n");
-            for (int i = 0; i < 10 && i < employees.size(); i++) {
-                Employee employee = employees.get(i);
-                String line = String.format("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());
-                writer.write(line);
-                System.out.print(line);
-            }
+            writer.write(report);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         System.out.println("\t\t\nОтчёт успешно сохранён в файл  Report\n\n\n");
+        return report;
+    }
+    public String getSavesReportToFile(){
+        String report = createsReportHighlyPaidEmployees();
+        return savesReportToFile(report);
     }
 
-    public void getCreatesReportHighlyPaidEmployees() {
-        createsReportHighlyPaidEmployees();
-    }
 }

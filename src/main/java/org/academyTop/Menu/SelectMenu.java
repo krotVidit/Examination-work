@@ -80,8 +80,9 @@ public class SelectMenu {
                     reportGeneratorAverageSalary.getSavesReportToFile();
                     break;
                 case 3:
-                    TopHighlyPaidEmployees reportGeneratorHighlyPaid = new TopHighlyPaidEmployees(employees);
-                    reportGeneratorHighlyPaid.getCreatesReportHighlyPaidEmployees();
+                    TopHighlyPaidEmployees topHighlyPaidEmployees = new TopHighlyPaidEmployees(employees);
+                    topHighlyPaidEmployees.getCreatesReportHighlyPaidEmployees();
+                    topHighlyPaidEmployees.getSavesReportToFile();
                     break;
                 case 4:
                     EmployeeParser employeeParser = new EmployeeParser();
