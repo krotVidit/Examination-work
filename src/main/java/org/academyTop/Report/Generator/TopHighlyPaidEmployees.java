@@ -5,7 +5,6 @@ import org.academyTop.Report.Employee;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class TopHighlyPaidEmployees {
 
     private void createsReportHighlyPaidEmployees() {
 
-        Collections.sort(employees, new Comparator<Employee>() {
+        employees.sort(new Comparator<Employee>() {
             @Override
             public int compare(Employee e1, Employee e2) {
                 double salary1 = Double.parseDouble(e1.getSalary());
@@ -27,8 +26,6 @@ public class TopHighlyPaidEmployees {
                 return Double.compare(salary2, salary1);
             }
         });
-
-        // Название файла и путь для сохранения отчета
         String fileName = "." + File.separator + "Report"+File.separator+"Top_highly_paid_employees.txt";
 
         try (FileWriter writer = new FileWriter(fileName)) {

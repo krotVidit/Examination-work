@@ -5,15 +5,15 @@ import org.academyTop.DataBase.DataBase;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class RoleAssigner {
+public class Roles {
     private ArrayList<ArrayList<String>> data;
 
-    public RoleAssigner() throws IOException {
+    public Roles() throws IOException {
         DataBase database = new DataBase();
         this.data = database.getPutDataBaseExelInArrayList();
     }
 
-    private void assignRoles() {
+    private void assignsRole() {
         for (ArrayList<String> row : data) {
             String position = row.get(1);
 
@@ -24,8 +24,8 @@ public class RoleAssigner {
             }
         }
     }
-    public void getAssignRoles(){
-        assignRoles();
+    public void getAssignsRole(){
+        assignsRole();
     }
 
     public ArrayList<ArrayList<String>> getData() {

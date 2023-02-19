@@ -16,7 +16,7 @@ public class TopLoyalEmployees {
         this.employees = employees;
     }
 
-    public void createReportLoyalEmployees() {
+    private void createReportLoyalEmployees() {
         employees.sort(Comparator.comparing(Employee::getCalculatesDurationOfWork).reversed());
 
         try (FileWriter writer = new FileWriter("." + File.separator + "Report" + File.separator + "Top_loyal_employees.txt")) {
@@ -31,5 +31,8 @@ public class TopLoyalEmployees {
             e.printStackTrace();
         }
         System.out.println("\t\t\nОтчёт успешно сохранён в файл в Report\n\n\n");
+    }
+    public void getCreateReportLoyalEmployees(){
+        createReportLoyalEmployees();
     }
 }

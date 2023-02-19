@@ -8,7 +8,7 @@ import org.academyTop.Report.Generator.AverageSalary;
 import org.academyTop.Report.Generator.OrganizationStructureReport;
 import org.academyTop.Report.Generator.TopHighlyPaidEmployees;
 import org.academyTop.Report.Generator.TopLoyalEmployees;
-import org.academyTop.Report.RoleAssigner;
+import org.academyTop.Report.Roles;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class SelectMenu {
     Scanner scanner = new Scanner(System.in);
-    RoleAssigner roleAssigner = new RoleAssigner();
+    Roles roleAssigner = new Roles();
     EmployeeParser employeeParser = new EmployeeParser();
     DataBase dataBase = new DataBase();
     List<Employee> employees = employeeParser.getParseData(roleAssigner.getData());
@@ -70,7 +70,7 @@ public class SelectMenu {
             int numberSelect = scanner.nextInt();
             switch (numberSelect) {
                 case 1:
-                    roleAssigner.getAssignRoles();
+                    roleAssigner.getAssignsRole();
                     ArrayList<ArrayList<String>> dataWithRoles = roleAssigner.getData();
                     OrganizationStructureReport report = new OrganizationStructureReport(dataWithRoles);
                     report.getGeneralReport();
@@ -89,7 +89,7 @@ public class SelectMenu {
                     List<Employee> employees = employeeParser.getParseData(roleAssigner.getData());
 
                     TopLoyalEmployees reportGenerator = new TopLoyalEmployees(employees);
-                    reportGenerator.createReportLoyalEmployees();
+                    reportGenerator.getCreateReportLoyalEmployees();
                     break;
                 case 5:
                     Menu menu = new Menu();

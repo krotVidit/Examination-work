@@ -41,8 +41,6 @@ public class OrganizationStructureReport {
                 department.addEmployee(employee);
             }
         }
-
-        // Выводим отчет на консоль
         for (Department department : departmentsMap.values()) {
             System.out.println("========================================================================================");
             System.out.println("            Отдел: " + department.getName());
