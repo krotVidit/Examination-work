@@ -39,7 +39,7 @@ public class TopHighlyPaidEmployees {
             Employee employee = employees.get(i);
             String line = String.format("%d. %s: %s рублей\n", i + 1, employee.getFullName(), employee.getSalary());
             reportBuilder.append(line);
-            System.out.println(line);
+            System.out.print(line);
         }
         return reportBuilder.toString();
     }

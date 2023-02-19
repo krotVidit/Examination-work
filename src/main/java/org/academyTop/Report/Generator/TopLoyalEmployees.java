@@ -25,7 +25,7 @@ public class TopLoyalEmployees {
                 Employee employee = employees.get(i);
                 String line = String.format("%d. %s - %d лет работы\n", i + 1, employee.getFullName(), employee.getCalculatesDurationOfWork());
                 writer.write(line);
-                System.out.print(line); // Добавляем эту строку для вывода на консоль
+                System.out.print(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
