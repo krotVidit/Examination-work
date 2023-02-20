@@ -17,22 +17,36 @@ public class TopLoyalEmployees {
     }
 
     private void createReportLoyalEmployees() {
-        employees.sort(Comparator.comparing(Employee::getCalculatesDurationOfWork).reversed());
+        StringBuilder reportContent = new StringBuilder();
+        reportContent.append("\n\n\nОтчет по всем сотрудникам:\n");
+        for (int i = 0; i < employees.size(); i++) {
+            Employee employee = employees.get(i);
+            String line = String.format("%d. %s - %d лет работы\n", i + 1, employee.getFullName(), employee.getCalculatesDurationOfWork());
+            reportContent.append(line);
+            System.out.print(line);
+        }
+        System.out.println("\t\t\nОтчёт успешно сохранён в файл в Report\n\n\n");
+        saveReportToFile(reportContent.toString(), "Top_loyal_employees.txt");
+    }
 
-        try (FileWriter writer = new FileWriter("." + File.separator + "Report" + File.separator + "Top_loyal_employees.txt")) {
-            writer.write("\n\n\nОтчет по всем сотрудникам:\n");
-            for (int i = 0; i < employees.size(); i++) {
-                Employee employee = employees.get(i);
-                String line = String.format("%d. %s - %d лет работы\n", i + 1, employee.getFullName(), employee.getCalculatesDurationOfWork());
-                writer.write(line);
-                System.out.print(line);
-            }
+    private void saveReportToFile(String reportContent, String fileName) {
+        try (FileWriter writer = new FileWriter("." + File.separator + "Report" + File.separator + fileName)) {
+            writer.write(reportContent);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("\t\t\nОтчёт успешно сохранён в файл в Report\n\n\n");
     }
-    public void getCreateReportLoyalEmployees(){
+
+    private void sortsEmployeesByDurationOfWork() {
+        employees.sort(Comparator.comparing(Employee::getCalculatesDurationOfWork).reversed());
+    }
+
+    public void getSortsEmployeesByDurationOfWork() {
+        sortsEmployeesByDurationOfWork();
+    }
+
+    public void getCreateReportLoyalEmployees() {
+        sortsEmployeesByDurationOfWork();
         createReportLoyalEmployees();
     }
 }

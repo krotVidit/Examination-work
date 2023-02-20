@@ -23,7 +23,6 @@ public class SelectMenu {
     List<Employee> employees = employeeParser.getParseData(roleAssigner.getData());
     AverageSalary reportGeneratorAverageSalary = new AverageSalary(employees);
     List<ArrayList<String>> data = dataBase.getPutDataBaseExelInArrayList();
-    List<Employee> employees1 = employeeParser.getParseData((ArrayList<ArrayList<String>>) data);
 
 
     public SelectMenu() throws IOException {
@@ -84,11 +83,8 @@ public class SelectMenu {
                     topHighlyPaidEmployees.getSavesReportToFile();
                     break;
                 case 4:
-                    EmployeeParser employeeParser = new EmployeeParser();
 
-                    List<Employee> employeeParserData = employeeParser.getParseData(roleAssigner.getData());
-
-                    TopLoyalEmployees reportGeneratorLoyalEmployees = new TopLoyalEmployees(employeeParserData);
+                    TopLoyalEmployees reportGeneratorLoyalEmployees = new TopLoyalEmployees(employees);
                     reportGeneratorLoyalEmployees.getCreateReportLoyalEmployees();
                     break;
                 case 5:
