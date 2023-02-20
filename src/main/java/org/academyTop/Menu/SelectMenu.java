@@ -30,7 +30,7 @@ public class SelectMenu {
 
     private void selectsMenuItemsAdmin() throws IOException {
         try {
-            int numberMenu = scanner.nextInt();
+            int numberMenu = Integer.parseInt(scanner.nextLine());
             switch (numberMenu) {
                 case 1:
                     new DataTable().setVisible(true);
@@ -66,7 +66,7 @@ public class SelectMenu {
 
     private void selectsMenuReport() throws IOException {
         try {
-            int numberSelect = scanner.nextInt();
+            int numberSelect = Integer.parseInt(scanner.nextLine());
             switch (numberSelect) {
                 case 1:
                     roleAssigner.getAssignsRole();
