@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class DataTable extends JFrame {
     private JTable table;
     private ArrayList<ArrayList<String>> data;
+
     private DataBase dataBase;
 
     public DataTable() throws IOException {
@@ -49,5 +50,8 @@ public class DataTable extends JFrame {
                 setVisible(false);
             }
         });
+    }
+    public ArrayList<ArrayList<String>> getData() {
+        return data;
     }
 }

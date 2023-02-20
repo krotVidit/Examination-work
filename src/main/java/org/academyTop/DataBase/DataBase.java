@@ -74,6 +74,9 @@ public class DataBase {
         }
         return result;
     }
+    public String getCheckedCellFormat(Cell cell) {
+        return ChecksCellForFormat(cell);
+    }
 }
 
 

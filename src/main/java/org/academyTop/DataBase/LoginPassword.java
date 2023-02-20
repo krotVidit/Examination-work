@@ -35,7 +35,6 @@ public class LoginPassword {
 
             hashLoginPassword.put(login, password);
         }
-        System.out.println(hashLoginPassword);
         dataBase.getPatchFileExel().close();
     }
 
