@@ -55,9 +55,9 @@ public class LoginPassword {
             if (password == keyHash) {
                 System.out.println("Password correct\n");
                 if (login.equals("Mimirov") || login.equals("Mironov") || login.equals("Yaric")) {
-                    new Menu().getPrintMenuAdmin();
+                    new Menu().getPrintsInteractiveMenuAdmin();
                 } else {
-                    new Menu().getPrintMenuEmployee();
+                    new Menu().getPrintsInteractiveMenuAdmin();
                 }
             } else {
                 System.out.println("Password is incorrect, please try again\n");
