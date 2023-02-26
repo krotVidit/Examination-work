@@ -23,7 +23,8 @@ public class OrganizationStructureReport {
         employees = parser.getParseData(data);
     }
 
-    private void generatesHierarchyReport() {
+    private String createOrganizationStructureReport() {
+        StringBuilder reportBuilder = new StringBuilder();
         Map<String, Department> departmentsMap = new HashMap<>();
 
         for (Employee employee : employees) {
@@ -41,85 +42,53 @@ public class OrganizationStructureReport {
                 department.addEmployee(employee);
             }
         }
+
         for (Department department : departmentsMap.values()) {
-            System.out.println("========================================================================================");
-            System.out.println("            Отдел: " + department.getName());
+            reportBuilder.append("========================================================================================\n");
+            reportBuilder.append("            Отдел: ").append(department.getName()).append("\n");
             if (department.getManager() != null) {
-                System.out.println("\tНачальник: " + department.getManager().getFullName() +
-                        " (пол " + department.getManager().getGender() + ", дата рождения " + department.getManager().getBirthDate() + ")");
+                reportBuilder.append("\tНачальник: ").append(department.getManager().getFullName())
+                        .append(" (пол ").append(department.getManager().getGender())
+                        .append(", дата рождения ").append(department.getManager().getBirthDate()).append(")\n");
             }
+
             List<Employee> employees = department.getEmployees();
 
             if (!employees.isEmpty()) {
-                System.out.println("\t\nПодчиненные:");
+                reportBuilder.append("\t\nПодчиненные:\n");
                 for (Employee employee : employees) {
-                    System.out.println("\t\t" + employee.getFullName() +
-                            " (пол " + employee.getGender() + ", дата рождения " + employee.getBirthDate() + ")");
+                    reportBuilder.append("\t\t").append(employee.getFullName())
+                            .append(" (пол ").append(employee.getGender())
+                            .append(", дата рождения ").append(employee.getBirthDate()).append(")\n");
                 }
             } else {
-                System.out.println("\tОтсутствуют подчиненные.");
+                reportBuilder.append("\tОтсутствуют подчиненные.\n");
             }
         }
 
-        savesReportToFile();
+        return reportBuilder.toString();
     }
 
-    public void getGeneratesHierarchyReport() {
+    private void generatesHierarchyReport() {
+        String report = createOrganizationStructureReport();
+        System.out.println(report);
+        savesReportToFile(report);
+    }
+    public void getGeneratesHierarchyReport(){
         generatesHierarchyReport();
     }
 
-    private void savesReportToFile() {
-        Map<String, Department> departmentsMap = new HashMap<>();
-
-        for (Employee employee : employees) {
-            String departmentName = employee.getDepartmentName();
-            Department department = departmentsMap.get(departmentName);
-
-            if (department == null) {
-                department = new Department(departmentName);
-                departmentsMap.put(departmentName, department);
-            }
-
-            if (employee.getPosition().equals("Начальник")) {
-                department.setManager(employee);
-            } else {
-                department.addEmployee(employee);
-            }
-        }
-
+    private void savesReportToFile(String report) {
         String fileName = "." + File.separator + "Report" + File.separator + "Organization_structure_report.txt";
 
         try (FileWriter writer = new FileWriter(fileName)) {
-            for (Department department : departmentsMap.values()) {
-                writer.write("\n\n\n========================================================================================\n");
-                writer.write( "\t\t\tОтдел: " + department.getName()+"\n");
-                if (department.getManager() != null) {
-                    writer.write("\tНачальник: " + department.getManager().getFullName() +
-                            " (пол " + department.getManager().getGender() + ", дата рождения " + department.getManager().getBirthDate() + ")\n");
-                }
-                List<Employee> employees = department.getEmployees();
-
-                if (!employees.isEmpty()) {
-                    writer.write("\nПодчиненные:\n");
-                    for (Employee employee : employees) {
-                        writer.write("\t\t" + employee.getFullName() +
-                                " (пол " + employee.getGender() + ", дата рождения " + employee.getBirthDate() + ")\n");
-                    }
-                } else {
-                    writer.write("\tОтсутствуют подчиненные.\n");
-                }
-            }
+            writer.write(report);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         System.out.println("\t\nОтчёт успешно сохранён в файл Report\n\n\n");
     }
-
-    public void getSavesReportToFile() {
-        savesReportToFile();
-    }
-
 
     private static class Department {
         private final String name;

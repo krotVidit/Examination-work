@@ -89,6 +89,7 @@ public class Menu {
                 ArrayList<ArrayList<String>> dataWithRoles = role.getData();
                 OrganizationStructureReport reportStructureOrganization = new OrganizationStructureReport(dataWithRoles);
                 reportStructureOrganization.getGeneratesHierarchyReport();
+
                 break;
             case 2:
                 reportGeneratorAverageSalary.getGenerateReportAverageSalary();
