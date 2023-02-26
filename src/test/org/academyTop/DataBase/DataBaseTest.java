@@ -17,7 +17,7 @@ public class DataBaseTest {
     @BeforeAll
     static void init() throws IOException {
         database = new DataBase();
-        workbook = database.getPatchFileExel();
+        workbook = database.getPatchFileExelDataBase();
         data = database.getPutDataBaseExelInArrayList();
     }
 
