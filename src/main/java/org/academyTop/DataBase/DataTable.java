@@ -67,12 +67,10 @@ public class DataTable extends JFrame {
         });
     }
 
-    // метод сохранения изменений
     private void saveData() {
         try {
             HSSFWorkbook workbook = dataBase.getPatchFileExelDataBase();
             String fileName = "DataBase.xls";
-
 
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             ArrayList<ArrayList<String>> tableData = new ArrayList<>();
