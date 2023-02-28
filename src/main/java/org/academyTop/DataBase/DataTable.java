@@ -1,10 +1,14 @@
 package org.academyTop.DataBase;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,6 +17,8 @@ public class DataTable extends JFrame {
     private ArrayList<ArrayList<String>> data;
 
     private DataBase dataBase;
+
+    private final JButton saveButton;
 
     public DataTable() throws IOException {
         super("DataBase");
@@ -44,6 +50,15 @@ public class DataTable extends JFrame {
             model.addRow(row.toArray());
         }
 
+        UIManager.put("Button.background", Color.GREEN);
+        saveButton = new JButton("Saves");
+        saveButton.addActionListener(e -> saveData());
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(saveButton);
+
+        container.add(buttonPanel, BorderLayout.NORTH);
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -51,6 +66,52 @@ public class DataTable extends JFrame {
             }
         });
     }
+
+    // метод сохранения изменений
+    private void saveData() {
+        try {
+            HSSFWorkbook workbook = dataBase.getPatchFileExelDataBase();
+            String fileName = "DataBase.xls";
+
+
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            ArrayList<ArrayList<String>> tableData = new ArrayList<>();
+
+            ArrayList<String> headerRow = new ArrayList<>();
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                headerRow.add(model.getColumnName(j));
+            }
+            tableData.add(headerRow);
+
+            for (int i = 0; i < model.getRowCount(); i++) {
+                ArrayList<String> row = new ArrayList<>();
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    row.add(model.getValueAt(i, j).toString());
+                }
+                tableData.add(row);
+            }
+
+            for (int i = 0; i < tableData.size(); i++) {
+                ArrayList<String> rowData = tableData.get(i);
+                for (int j = 0; j < rowData.size(); j++) {
+                    Cell cell = workbook.getSheetAt(0).getRow(i).getCell(j);
+                    cell.setCellValue(rowData.get(j));
+                }
+            }
+
+            FileOutputStream out = new FileOutputStream(fileName);
+            workbook.write(out);
+            out.close();
+
+            dataBase.getPatchFileExelDataBase().close();
+            JOptionPane.showMessageDialog(this, "Changes saved");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
     public ArrayList<ArrayList<String>> getData() {
         return data;
     }
