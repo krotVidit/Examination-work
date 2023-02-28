@@ -50,7 +50,6 @@ public class DataTable extends JFrame {
             model.addRow(row.toArray());
         }
 
-        UIManager.put("Button.background", Color.GREEN);
         saveButton = new JButton("Saves");
         saveButton.addActionListener(e -> saveData());
 
