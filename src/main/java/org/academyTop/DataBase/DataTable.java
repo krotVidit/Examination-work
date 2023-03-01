@@ -20,6 +20,8 @@ public class DataTable extends JFrame {
 
     private final JButton saveButton;
     private final JButton cancelButton;
+    private final JTextField searchField;
+    private final JButton searchButton;
 
     public DataTable() throws IOException {
         super("DataBase");
@@ -57,12 +59,23 @@ public class DataTable extends JFrame {
         cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(e -> cancelsChanges());
 
+        searchField = new JTextField();
+        searchButton = new JButton("Search");
+        searchButton.addActionListener(e -> searches());
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(saveButton);
         buttonPanel.add(cancelButton);
-
         container.add(buttonPanel, BorderLayout.NORTH);
+
+        JPanel searchPanel = new JPanel();
+        searchField.setPreferredSize(new Dimension(200,25));
+        searchPanel.add(searchField);
+        searchPanel.add(searchButton);
+        searchPanel.setPreferredSize(new Dimension(600,60));
+        searchPanel.setMinimumSize(new Dimension(600,400));
+        container.add(searchPanel, BorderLayout.SOUTH);
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -128,4 +141,29 @@ public class DataTable extends JFrame {
     public void getCancelsChanges(){
         cancelsChanges();
     }
+    private void searches() {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        String searchText = searchField.getText();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            boolean found = false;
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                String cellText = model.getValueAt(i, j).toString();
+                if (cellText.contains(searchText)) {
+                    found = true;
+                    break;
+                }
+            }
+            table.setRowSelectionAllowed(true);
+            if (found) {
+                table.setRowSelectionInterval(i, i);
+            } else {
+                table.removeRowSelectionInterval(i, i);
+            }
+        }
+    }
+    public void getSearches(){
+        searches();
+    }
+
+
 }
