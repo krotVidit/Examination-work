@@ -52,10 +52,10 @@ public class DataTable extends JFrame {
         }
 
         saveButton = new JButton("Save");
-        saveButton.addActionListener(e -> saveData());
+        saveButton.addActionListener(e -> savesData());
 
         cancelButton = new JButton("Cancel");
-        cancelButton.addActionListener(e -> cancelChanges());
+        cancelButton.addActionListener(e -> cancelsChanges());
 
 
         JPanel buttonPanel = new JPanel();
@@ -72,7 +72,7 @@ public class DataTable extends JFrame {
         });
     }
 
-    private void saveData() {
+    private void savesData() {
         try {
             HSSFWorkbook workbook = dataBase.getPatchFileExelDataBase();
             String fileName = "DataBase.xls";
@@ -113,7 +113,10 @@ public class DataTable extends JFrame {
             ex.printStackTrace();
         }
     }
-    private void cancelChanges() {
+    public void getSavesData(){
+        savesData();
+    }
+    private void cancelsChanges() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         for (int i = 0; i < model.getRowCount(); i++) {
             for (int j = 0; j < model.getColumnCount(); j++) {
@@ -122,9 +125,7 @@ public class DataTable extends JFrame {
             }
         }
     }
-
-
-    public ArrayList<ArrayList<String>> getData() {
-        return data;
+    public void getCancelsChanges(){
+        cancelsChanges();
     }
 }
