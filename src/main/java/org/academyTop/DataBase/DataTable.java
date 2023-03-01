@@ -19,6 +19,7 @@ public class DataTable extends JFrame {
     private DataBase dataBase;
 
     private final JButton saveButton;
+    private final JButton cancelButton;
 
     public DataTable() throws IOException {
         super("DataBase");
@@ -50,11 +51,16 @@ public class DataTable extends JFrame {
             model.addRow(row.toArray());
         }
 
-        saveButton = new JButton("Saves");
+        saveButton = new JButton("Save");
         saveButton.addActionListener(e -> saveData());
+
+        cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(e -> cancelChanges());
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
 
         container.add(buttonPanel, BorderLayout.NORTH);
 
@@ -105,6 +111,15 @@ public class DataTable extends JFrame {
 
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+    private void cancelChanges() {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                String originalValue = data.get(i + 1).get(j);
+                model.setValueAt(originalValue, i, j);
+            }
         }
     }
 
