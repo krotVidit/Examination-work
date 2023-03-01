@@ -13,15 +13,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataTable extends JFrame {
-    private JTable table;
-    private ArrayList<ArrayList<String>> data;
+    private final JTable table;
+    private final ArrayList<ArrayList<String>> data;
 
-    private DataBase dataBase;
+    private final DataBase dataBase;
 
-    private final JButton saveButton;
-    private final JButton cancelButton;
     private final JTextField searchField;
-    private final JButton searchButton;
 
     public DataTable() throws IOException {
         super("DataBase");
@@ -53,29 +50,35 @@ public class DataTable extends JFrame {
             model.addRow(row.toArray());
         }
 
-        saveButton = new JButton("Save");
+        JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> savesData());
 
-        cancelButton = new JButton("Cancel");
+        JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(e -> cancelsChanges());
 
         searchField = new JTextField();
-        searchButton = new JButton("Search");
+        JButton searchButton = new JButton("Search");
         searchButton.addActionListener(e -> searches());
 
+        JButton newButton = new JButton("New");
+        newButton.addActionListener(e -> addNewRow());
 
-        JPanel buttonPanel = new JPanel();
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttonPanel.add(saveButton);
         buttonPanel.add(cancelButton);
-        container.add(buttonPanel, BorderLayout.NORTH);
+        buttonPanel.add(newButton);
 
-        JPanel searchPanel = new JPanel();
-        searchField.setPreferredSize(new Dimension(200,25));
+        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        searchField.setPreferredSize(new Dimension(200, 25));
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
-        searchPanel.setPreferredSize(new Dimension(600,60));
-        searchPanel.setMinimumSize(new Dimension(600,400));
-        container.add(searchPanel, BorderLayout.SOUTH);
+
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(buttonPanel, BorderLayout.WEST);
+        topPanel.add(searchPanel, BorderLayout.EAST);
+
+        container.add(topPanel, BorderLayout.NORTH);
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -163,6 +166,11 @@ public class DataTable extends JFrame {
     }
     public void getSearches(){
         searches();
+    }
+
+    private void addNewRow() {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(new String[]{"", "", "", "", "","","","","","","",""});
     }
 
 
