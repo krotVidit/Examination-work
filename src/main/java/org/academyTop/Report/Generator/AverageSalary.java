@@ -1,5 +1,8 @@
-package org.academyTop.Report;
+package org.academyTop.Report.Generator;
 
+import org.academyTop.Report.Employee;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,14 +10,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ReportGenerator {
+public class AverageSalary {
     private List<Employee> employees;
 
-    public ReportGenerator(List<Employee> employees) {
+    public AverageSalary(List<Employee> employees) {
         this.employees = employees;
     }
 
-    public Map<String, Double> getAverageSalaryByDepartment() {
+    private Map<String, Double> calculatesAverageSalaryByDepartment() {
         Map<String, Double> departmentSalaryMap = new HashMap<>();
         Map<String, List<Employee>> employeesByDepartment = employees.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartmentName));
@@ -29,8 +32,11 @@ public class ReportGenerator {
         }
         return departmentSalaryMap;
     }
+    public Map<String, Double> getCalculatesAverageSalaryByDepartment(){
+        return calculatesAverageSalaryByDepartment();
+    }
 
-    public double getAverageSalary() {
+    private double calculatesAverageSalaryOrganization() {
         double totalSalary = 0;
         for (Employee employee : employees) {
             totalSalary += Double.parseDouble(employee.getSalary().replaceAll("[^\\d.]", ""));
@@ -38,9 +44,13 @@ public class ReportGenerator {
         return totalSalary / employees.size();
     }
 
-    public void generateReport() {
-        Map<String, Double> averageSalaryByDepartment = getAverageSalaryByDepartment();
-        double averageSalary = getAverageSalary();
+    public double getCalculatesAverageSalaryOrganization(){
+        return calculatesAverageSalaryOrganization();
+    }
+
+    private void generateReportAverageSalary() {
+        Map<String, Double> averageSalaryByDepartment = getCalculatesAverageSalaryByDepartment();
+        double averageSalary = getCalculatesAverageSalaryOrganization();
 
         System.out.println("Средняя зарплата по организации: " + averageSalary);
         for (Map.Entry<String, Double> entry : averageSalaryByDepartment.entrySet()) {
@@ -49,20 +59,27 @@ public class ReportGenerator {
             System.out.println("Средняя зарплата по отделу " + department + ": " + departmentAverageSalary);
         }
     }
+    public void getGenerateReportAverageSalary(){
+        generateReportAverageSalary();
+    }
 
-    public void saveReportToFile(String fileName) throws IOException {
-        Map<String, Double> averageSalaryByDepartment = getAverageSalaryByDepartment();
-        double averageSalary = getAverageSalary();
+    private void savesReportToFile() throws IOException {
+        Map<String, Double> averageSalaryByDepartment = getCalculatesAverageSalaryByDepartment();
+        double averageSalary = getCalculatesAverageSalaryOrganization();
+        String file = "."+ File.separator+"Report"+File.separator+"Average_salary.txt";
 
-        FileWriter fileWriter = new FileWriter(fileName);
-        fileWriter.write("Средняя зарплата по организации: " + averageSalary + "\n");
+        FileWriter fileWriter = new FileWriter(file);
+        fileWriter.write("\n\n\nСредняя зарплата по организации: " + averageSalary + "\n");
         for (Map.Entry<String, Double> entry : averageSalaryByDepartment.entrySet()) {
             String department = entry.getKey();
             double departmentAverageSalary = entry.getValue();
             fileWriter.write("Средняя зарплата по отделу " + department + ": " + departmentAverageSalary + "\n");
         }
+        System.out.println("\t\t\nОтчёт успешно сохранён в файл в Report\n\n\n");
         fileWriter.close();
-        System.out.println("Отчёт успешно сохранён в файл " + fileName);
+    }
+    public void getSavesReportToFile() throws IOException {
+        savesReportToFile();
     }
 }
 

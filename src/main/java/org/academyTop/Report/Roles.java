@@ -1,19 +1,19 @@
 package org.academyTop.Report;
 
-import org.academyTop.DataBase;
+import org.academyTop.DataBase.DataBase;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class RoleAssigner {
+public class Roles {
     private ArrayList<ArrayList<String>> data;
 
-    public RoleAssigner() throws IOException {
+    public Roles() throws IOException {
         DataBase database = new DataBase();
         this.data = database.getPutDataBaseExelInArrayList();
     }
 
-    public void assignRoles() {
+    private void assignsRole() {
         for (ArrayList<String> row : data) {
             String position = row.get(1);
 
@@ -23,6 +23,9 @@ public class RoleAssigner {
                 row.set(1, "Сотрудник");
             }
         }
+    }
+    public void getAssignsRole(){
+        assignsRole();
     }
 
     public ArrayList<ArrayList<String>> getData() {

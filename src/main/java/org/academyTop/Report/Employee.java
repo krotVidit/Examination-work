@@ -34,17 +34,24 @@ public class Employee {
         this.bonusType = bonusType;
         this.salary = salary;
     }
-    public String getFullName() {
+
+    public String fullName() {
         return lastName + " " + firstName + " " + middleName;
     }
-    public int getDurationOfWork() {
-        // Преобразование строки в дату
-        LocalDate startDate = LocalDate.parse(this.startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
-        // Вычисление количества лет работы
+    public String getFullName() {
+        return fullName();
+    }
+
+    private int calculatesDurationOfWork() {
+        LocalDate startDate = LocalDate.parse(this.startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         LocalDate now = LocalDate.now();
         Period period = Period.between(startDate, now);
         return period.getYears();
+    }
+
+    public int getCalculatesDurationOfWork() {
+        return calculatesDurationOfWork();
     }
 
     public String getDepartmentName() {

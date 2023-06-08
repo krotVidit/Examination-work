@@ -1,4 +1,4 @@
-package org.academyTop;
+package org.academyTop.DataBase;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -12,14 +12,22 @@ import java.util.ArrayList;
 public class DataBase {
     ArrayList<ArrayList<String>> dataBaseArrayList = new ArrayList<>();
 
-    private HSSFWorkbook patchFileExel() throws IOException {
+    private HSSFWorkbook patchFileExelDataBase() throws IOException {
 
-        FileInputStream fileExel = new FileInputStream("company.xls");
-        return new HSSFWorkbook(fileExel);
+        FileInputStream fileExelDS = new FileInputStream("DataBase.xls");
+        return new HSSFWorkbook(fileExelDS);
     }
 
-    public HSSFWorkbook getPatchFileExel() throws IOException {
-        return patchFileExel();
+    public HSSFWorkbook getPatchFileExelDataBase() throws IOException {
+        return patchFileExelDataBase();
+    }
+
+    private HSSFWorkbook patchFileExelLoginPassword() throws IOException {
+        FileInputStream fileExelLP = new FileInputStream("LoginPassword.xls");
+        return new HSSFWorkbook(fileExelLP);
+    }
+    public HSSFWorkbook getPatchFileExelLoginPassword() throws IOException {
+        return patchFileExelLoginPassword();
     }
 
     private ArrayList<ArrayList<String>> putDataBaseExelInArrayList() throws IOException {
@@ -34,14 +42,14 @@ public class DataBase {
             ArrayList<String> rowData = new ArrayList<>();
 
             for (int j = startCell; j < endCell; j++) {
-                Cell cell = patchFileExel().getSheetAt(0).getRow(i).getCell(j);
+                Cell cell = patchFileExelDataBase().getSheetAt(0).getRow(i).getCell(j);
                 String data = ChecksCellForFormat(cell);
                 rowData.add(data);
             }
 
             dataBaseArrayList.add(rowData);
         }
-        patchFileExel().close();
+        patchFileExelDataBase().close();
         return dataBaseArrayList;
     }
     public ArrayList<ArrayList<String>> getPutDataBaseExelInArrayList() throws IOException {
@@ -73,6 +81,9 @@ public class DataBase {
                 System.out.println();
         }
         return result;
+    }
+    public String getCheckedCellFormat(Cell cell) {
+        return ChecksCellForFormat(cell);
     }
 }
 

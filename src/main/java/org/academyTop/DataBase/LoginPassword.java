@@ -1,4 +1,4 @@
-package org.academyTop;
+package org.academyTop.DataBase;
 
 import org.academyTop.Menu.Menu;
 
@@ -30,13 +30,12 @@ public class LoginPassword {
         int starRow = 1;
         int endRow = 10;
         for (int i = starRow; i < endRow; i++) {
-            login = String.valueOf(dataBase.getPatchFileExel().getSheetAt(1).getRow(i).getCell(3));
-            password = (int) dataBase.getPatchFileExel().getSheetAt(1).getRow(i).getCell(4).getNumericCellValue();
+            login = String.valueOf(dataBase.getPatchFileExelLoginPassword().getSheetAt(0).getRow(i).getCell(3));
+            password = (int) dataBase.getPatchFileExelLoginPassword().getSheetAt(0).getRow(i).getCell(4).getNumericCellValue();
 
             hashLoginPassword.put(login, password);
         }
-        System.out.println(hashLoginPassword);
-        dataBase.getPatchFileExel().close();
+        dataBase.getPatchFileExelDataBase().close();
     }
 
     public void getPutLoginPasswordInHashMap() throws IOException {
@@ -56,9 +55,9 @@ public class LoginPassword {
             if (password == keyHash) {
                 System.out.println("Password correct\n");
                 if (login.equals("Mimirov") || login.equals("Mironov") || login.equals("Yaric")) {
-                    new Menu().getPrintMenuAdmin();
+                    new Menu().getPrintsInteractiveMenuAdmin();
                 } else {
-                    new Menu().getPrintMenuEmployee();
+                    new Menu().getPrintsInteractiveMenuAdmin();
                 }
             } else {
                 System.out.println("Password is incorrect, please try again\n");

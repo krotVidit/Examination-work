@@ -5,13 +5,16 @@ import java.util.List;
 
 public class EmployeeParser {
 
-    public List<Employee> parseData(ArrayList<ArrayList<String>> data) {
+    private List<Employee> parseData(ArrayList<ArrayList<String>> data) {
         List<Employee> employees = new ArrayList<>();
 
-        // Пропускаем первую строку в файле
-        data.remove(0);
-
+        boolean firstRowSkipped = false;
         for (ArrayList<String> row : data) {
+            if (!firstRowSkipped) {
+                firstRowSkipped = true;
+                continue;
+            }
+
             String departmentName = row.get(0);
             String position = row.get(1);
             String lastName = row.get(2);
@@ -31,5 +34,9 @@ public class EmployeeParser {
         }
 
         return employees;
+    }
+
+    public List<Employee> getParseData(ArrayList<ArrayList<String>> data) {
+        return parseData(data);
     }
 }
